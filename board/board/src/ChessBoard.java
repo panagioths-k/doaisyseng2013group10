@@ -14,18 +14,18 @@ public class ChessBoard extends JFrame {
 	
 	
 	private JLabel diceResult;
-	//για να εμφανίζεται πρόχειρα για αρχή ο random αριθμός
+	//gia na emfanizetai proxeira sthn arxh o random arithmos
 	private Random r;
 	private int playerX;
-	//συντεταγμένη Χ για το πιόνι
+	//syntetagmenh X gia to pioni
 	private int playerY;
-	//συνταταγμένη Υ για το πιόνι
+	//syntetagmenh Y gia to pioni
 	private int size;
-	//η πλευρά του τετραγώνου κάθε φορά
+	//h pleyra tou tetragwnou kathe fora
 	private ArrayList<Square> turnSteps;
-	//κρατάει τα τετράγωνα στα οποία έχει πατήσει ο παίχτης στην σειρά του
+	//krataei ta tetragwna sta opoia exei pathsei o paixths sthn seira tou
 	private int totalMoves;
-	//μερτητής για να αποθηκεύεται ο αριθμός κινήσεων που έχει γίνει ήδη
+	//metrhths gia na apothikeyestai o arithmos kinisewn pou exei ginei hdh
 	
 	public ChessBoard() {
 		playerX=0;
@@ -56,7 +56,7 @@ public class ChessBoard extends JFrame {
 		boardPanel.addMouseListener(mlistener);
 		
 		r=new Random(System.currentTimeMillis());
-		//δημιουργία μήτρας τυχαίων αριθμών
+		//dhmiourgia mhtras tyxaiwn arithmwn
 		
 		this.setVisible(true);
 		this.setSize(500, 500);
@@ -68,25 +68,25 @@ public class ChessBoard extends JFrame {
 		
 		private static final int ROWS = 8;
 		private static final int COLUMNS = 8;
-		//ενδεικτικά μεγέθη διαίρεσης τετραγώνων του board
+		//endeiktika megethi diaireshs tetragwnwn sto board
 		
 		private int xCoord = 0;
 		private int yCoord = 0;
-		//αρχικές συντεταγμένες
+		//arxikes syntetagmenes
 		
 		public void setXYCoordinates(int xValue, int yValue) {
-			//μεθοδος καθορισμού συντεταγμένων
+			//methodos kathorismou syntetagmenwn
 			xCoord = xValue;
 			yCoord = yValue;
 		}
 		
 		public void paintComponent(Graphics g) {
-			//επικάλυψη της paintcomponent
+			//epikalypsh ths paintcomponent
 			super.paintComponent(g);
 			
 			int sqSize = this.getHeight() / ROWS;
 			size=sqSize;
-			//για να αλλάζει το μέγεθος των γραμμών ανάλογα με το παράθυρο
+			//gia na allazei to megethos twn grammwn analoga me to parathyro
 			
 			for(int i=0; i<ROWS; i++) {
 				for(int j=0; j<COLUMNS; j++) {
@@ -99,9 +99,9 @@ public class ChessBoard extends JFrame {
 			
 			g.setColor(Color.RED);
 			g.fillOval(xCoord, yCoord, sqSize, sqSize);
-			//αν αλλάξει το παράθυρο αφού έχουν γίνει κάποιες κινήσεις το πιόνι χάνει την στοίχισή του μέσα
-			//στο τετράγωνο... χρειάζεται άλλη μία repaint όταν κάνουμε resize το παράθυρο... ή να είναι fix
-			//το μέγεθός του...
+			//an allaksei to parathyro afou ginoun kapoies kiniseis to pioni xanei thn stoixish tou mesa sto
+			//tetragwno...xreiazetai allh mia repaint otan kanoume resize to parathyro h na exei to parathyro
+			//fix megethos
 			
 		}
 		
@@ -112,20 +112,20 @@ public class ChessBoard extends JFrame {
 	class MouseClickListener implements MouseListener {
 		public void mouseClicked(MouseEvent e) {
 			boolean found=false;
-			//flag που δείχνει αν βρέθηκε το τετράγωνο στην λίστα
+			//flag pou deixnei an brethike to tetragwno sthn lista
 			int x = e.getX();
 			int y = e.getY();
-			//συντεταγμένες του κλικ
+			//syntetagmenes tou klik
 			
 			
 			if(turnSteps.size()>=totalMoves){
 				System.out.println("Roll Again");
-				//αν η λίστα με τα βήματα δεν είναι γεμάτη μόνο τότε κάνει επιπλέον κινήσεις
+				//an h lista me ta bhmata den einai gemath mono tote kanei tis epipleon kiniseis
 			}
 			else{
 			if ((x<(size*8))&&(y<(size*8))&&(x>(playerX+size))&&(y<(playerY+size))&&(y>playerY)){
-				//επειδή εδώ το rows και το columns είναι 8 για αυτό πολλαπλασιάζω το 8 με το μέγεθος των τετραγώνων
-				//για να μην μπορώ να κάνω κλικ εκτός του board
+				//epeidi edw to megethos twn tetragwnwn einai 8 gia ayto pollaplasiazw me to 8 to size
+				//gia na mhn mporw na kanw klik ektws tou board
 				playerX=playerX+size;
 				}
 			else if((x<(size*8))&&(y<(size*8))&&(x<playerX)&&(y<(playerY+size))&&(y>playerY)){
@@ -137,26 +137,25 @@ public class ChessBoard extends JFrame {
 			else if ((x<(size*8))&&(y<(size*8))&&(y<playerY)&&(x<(playerX+size))&&(x>playerX)){
 				playerY=playerY-size;
 			}
-			//κίνηση παίχτη ώστε να μπορεί να κινείται μόνο οριζόντια ή κάθετα και όχι διαγώνια
-			//το πιόνι κινείται μόνο αν γίνει κλικ στο επόμενο (ή κάποιο πιο μακρινό τετράγωνο) προς την ίδια κατεύθυνση
-			//το πιόνι κάθε φορά κεντράει και καταλαμβάνει όλο το τετράγωνο
-			
-			
+			//kinhsh paixth gia na mporei na kineitai mono katheta h orizontia kai oxi diagwnia
+			//to pioni kineitai mono an ginei klik sto epomeno (h kapoio pio makrino tetragwno) pros thn 
+			//idia kateythynsh... to pioni kathe fora kentrarei kai katalambanei olo to tetragwno
+					
 			
 			Square sq=new Square(playerX,playerY);
-			//δημιουργία αντικειμένου τετραγώνου
+			//dhmiourgia antikeimenou Square
 			
 			if (turnSteps.isEmpty()){
-				//αν η λίστα είναι άδεια το τετράγωνο μπαίνει χωρίς έλεγχο
+				//an h lista einai adeia to tetragwno mpainei xwris elegxo
 				turnSteps.add(sq);
 				sq.printSquare();
 				}
 			else{
 				for(Square s: turnSteps){
-					//έλεγχος αν υπάρχει τετράγωνο με τις ίδιες συνταταγμένες
+					//elegxos an yparxei tetragwno stis idies syntatagmenes
 					if((s.getCorrX()==sq.getCorrX())&&(s.getCorrY()==sq.getCorrY())){
 						System.out.println("Dialekse allo tetragwno");
-						//τυπώνεται για έλεγχο
+						//typwnetai gia elegxo
 						found=true;
 					}
 				}
@@ -164,7 +163,7 @@ public class ChessBoard extends JFrame {
 				if (!found){
 					turnSteps.add(sq);
 					sq.printSquare();
-			//δημιουργία αντικειμένου τετραγώνου και προσθήκη του στην λίστα με όσα έχει περάσει ο παίχτης
+			//dhmiourgia antikeimenou tetragwnou kai prosthiki tou sthn lista me osa exei perasei o paixths
 					
 					
 				}
@@ -176,7 +175,7 @@ public class ChessBoard extends JFrame {
 			
 			if (!found)			
 			boardPanel.repaint();	
-			//αν το τετράγωνο δεν υπάρχει στην λίστα τοτε και μονο τότε κάνε repaint
+			//an to tetragwno den yparxei sthn lista tote kai mono tote kane repaint
 		}}
 		
 		public void mousePressed(MouseEvent e) {
@@ -202,16 +201,18 @@ public class ChessBoard extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			turnSteps=new ArrayList<Square>();
-			//σε κάθε ζαριά δημιουργείται μία καινούρια arraylist για να αποθηκεύει τις κινήσεις
+			//se kathe zaria dhmiourgeitai mia kainouria arraylist gia na apothikeyontai oi kiniseis
+			//an den pathsoume roll prwta kai pame na kounisoume to pioni petaei nullpointerexception giati
+			//den dimiourgeitai to arraylist... isws prepei na prosthesoume ena try catch
 			int dice=r.nextInt(6)+1;
 			
 			totalMoves=dice;
-			//μετρητής κινήσεων
+			//metrhths kinhsewn
 			
 			String result=Integer.toString(dice);
 			diceResult.setText(result);
 			System.out.println(dice);
-			//πρόχειρος έλεγχος στην κονσόλα
+			//proxeiros elegxos sthn konsola
 			
 			
 				
