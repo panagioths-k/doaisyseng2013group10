@@ -55,9 +55,12 @@ public class Board extends JFrame{
 		mainPanel.add(coinButton);
 		
 		ButtonListener listener = new ButtonListener();
-		coinButton.addActionListener(listener);
 		diceButton.addActionListener(listener);
+
 		//dokimastikoi listener
+		
+		CoinButtonListener coinListener=new CoinButtonListener();
+		coinButton.addActionListener(coinListener);
 		
 		ImageIcon  heroIcon=new  ImageIcon("hero.jpg");
 		Image heroImage=heroIcon.getImage();
@@ -212,5 +215,10 @@ class ButtonListener implements ActionListener {
 			}
 			
 		}
-	}	
+	}
+class CoinButtonListener implements ActionListener {
+	public void actionPerformed(ActionEvent e) {
+		new DummyFrame();
+		}
+}
 }

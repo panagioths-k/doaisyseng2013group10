@@ -38,23 +38,22 @@ public class Pick_A_Hero extends JFrame {
 	private ImageIcon help;
 	private Image help2;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Name_Frame frame = new Name_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
-	/**
-	 * @wbp.parser.constructor
-	 */
+	
 	public Pick_A_Hero(User user) {
+		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Name_Frame frame = new Name_Frame();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+		
+		
 		xristis = user;
 		try {
 			background = ImageIO.read(new File("start.jpg"));
