@@ -1,24 +1,16 @@
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
-
-
 public class Board extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
 	private JButton diceButton;
 	private JButton coinButton;
 	private JLabel heroLabel;
@@ -26,15 +18,11 @@ public class Board extends JFrame{
 	private JTextArea heroStatLabel;
 	private JTextArea monsterStatLabel;
 	private JLabel backLabel;
-	
-	
 	private Random r;
 	private JPanel mainPanel;
-	
 	private MyGlassPane myGlassPane;
 	private int row;
 	private int size;
-	
 	private int playerX;
 	private int playerY;
 	
