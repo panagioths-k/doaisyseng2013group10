@@ -1,386 +1,435 @@
-import java.awt.BorderLayout;
-import java.awt.Cursor;
-import java.awt.EventQueue;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import javax.swing.ImageIcon;
+import java.awt.Cursor;
 
 public class Pick_A_Hero extends JFrame {
 
-	private JPanel contentPane;
-	private JLabel hero_pick_lbl_1;
-	private JLabel hero_pick_lbl_2;
-	private JLabel hero_pick_lbl_3;
-	private JLabel hero_pick_lbl_4;
-	private JLabel hero_pick_lbl_5;
-	private JLabel hero_pick_lbl_6;
-	private JLabel Anim_lbl;
-	private Image back_anim_img;
-	private ImageIcon back_anim_icon;
-	private JLabel hero_name_lbl_2;
-	private JLabel hero_name_lbl_3;
-	private JLabel hero_name_lbl_4;
-	private JLabel hero_name_lbl_5;
-	private JLabel hero_name_lbl_6;
-	private continueButtonListener contBtLst;
+	private static final long serialVersionUID = 1L;
+	private JPanel helpPanel, quitPanel;
+	private Name_Frame name;
+	private Board pista;
 	private User xristis, xristis2;
-	
+	private Image background;
+	private BackgroundPanel back;
+	private JLabel title, pl1, pl2, pl3, pl4, pl5, pl6, lab1, lab2, lab3, lab4, lab5, lab6, align;
+	private JButton quit, piso, play;
+	private Clip clip;
+	private AudioInputStream audio;
+	private ImageIcon help;
+	private Image help2;
 
-	public Pick_A_Hero(User user) {
-		xristis = user;
-		
-		contentPane = new JPanel();
-		
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-	
-		back_anim_icon= new ImageIcon("fire.gif"); 
-		
-	
-		
-		                                           //This JLabel is hidden behind the backround image and when a hero is clicked
-		Anim_lbl = new JLabel();                         //it receives the ImageIcon and the bounds are changing
-		Anim_lbl.setBounds(495, 484, 179, 198);                                                  
-		contentPane.add(Anim_lbl);
-		
-		
-		hero_pick_lbl_1 = new JLabel();
-		hero_pick_lbl_1.setBounds(10, 30, 179, 198);  
-		ImageIcon heriIcon_1= new ImageIcon("hero_pick_1.jpg");   //heroIcon_1
-		Image h_1 = heriIcon_1.getImage().getScaledInstance(hero_pick_lbl_1.getWidth(), hero_pick_lbl_1.getHeight(), 0);
-		hero_pick_lbl_1.setIcon(new ImageIcon(h_1));
-		hero_pick_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_1);
-		
-		
-		
-		hero_pick_lbl_2 = new JLabel();
-		hero_pick_lbl_2.setBounds(247, 30, 179, 198);
-		ImageIcon heriIcon_2= new ImageIcon("hero_pick_2.jpg");   //heroIcon_2
-		Image h_2 = heriIcon_2.getImage().getScaledInstance(hero_pick_lbl_2.getWidth(), hero_pick_lbl_2.getHeight(), 0);
-		hero_pick_lbl_2.setIcon(new ImageIcon(h_2));
-		hero_pick_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_2);
-		
-		hero_pick_lbl_3 = new JLabel();
-		hero_pick_lbl_3.setBounds(495, 30, 179, 198);
-		ImageIcon heriIcon_3= new ImageIcon("hero_pick_3.jpg");   //heroIcon_3
-		Image h_3 = heriIcon_3.getImage().getScaledInstance(hero_pick_lbl_3.getWidth(), hero_pick_lbl_3.getHeight(), 0);
-		hero_pick_lbl_3.setIcon(new ImageIcon(h_3));
-		hero_pick_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_3);
-		
-		hero_pick_lbl_4 = new JLabel("New label");
-		hero_pick_lbl_4.setBounds(10, 260, 179, 198);
-		hero_pick_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_4);
-		
-		hero_pick_lbl_5 = new JLabel("New label");
-		hero_pick_lbl_5.setBounds(247, 260, 179, 198);
-		hero_pick_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_5);
-		
-		hero_pick_lbl_6 = new JLabel("New label");
-		hero_pick_lbl_6.setBounds(495, 260, 179, 198);
-		hero_pick_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_6);
-		
-		
-		ImageIcon  heroIcon=new  ImageIcon("anim.gif");
-		Image heroImage=heroIcon.getImage();
-		
-		
-		JButton btnContinue = new JButton("Continue"); //button for after choise
-		btnContinue.setBackground(Color.BLACK);
-		btnContinue.setForeground(Color.WHITE);
-		btnContinue.setFont(new Font("Snap ITC", Font.PLAIN, 17));
-		btnContinue.setBounds(280, 618, 146, 44);
-		
-		contBtLst=new continueButtonListener();
-		btnContinue.addActionListener(contBtLst);
-		
-		contentPane.add(btnContinue);
-		ImageIcon  backimgIcon=new  ImageIcon("backimg.jpg");
-		Image backImage=backimgIcon.getImage();
-		
-		JLabel hero_name_lbl_1 = new JLabel("Hero 1 name");
-		hero_name_lbl_1.setForeground(Color.WHITE);
-		hero_name_lbl_1.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_1.setBounds(10, 0, 179, 28);
-		contentPane.add(hero_name_lbl_1);
-		
-		hero_name_lbl_2 = new JLabel("Hero 2 name");
-		hero_name_lbl_2.setForeground(Color.WHITE);
-		hero_name_lbl_2.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_2.setBounds(247, 0, 179, 28);
-		contentPane.add(hero_name_lbl_2);
-		
-		hero_name_lbl_3 = new JLabel("Hero 3 name");
-		hero_name_lbl_3.setForeground(Color.WHITE);
-		hero_name_lbl_3.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_3.setBounds(495, 0, 179, 28);
-		contentPane.add(hero_name_lbl_3);
-		
-		hero_name_lbl_4 = new JLabel("Hero 4 name");
-		hero_name_lbl_4.setForeground(Color.WHITE);
-		hero_name_lbl_4.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_4.setBounds(10, 226, 179, 28);
-		contentPane.add(hero_name_lbl_4);
-		
-		hero_name_lbl_5 = new JLabel("Hero 5 name");
-		hero_name_lbl_5.setForeground(Color.WHITE);
-		hero_name_lbl_5.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_5.setBounds(247, 221, 179, 28);
-		contentPane.add(hero_name_lbl_5);
-		
-		hero_name_lbl_6 = new JLabel("Hero 6 name");
-		hero_name_lbl_6.setForeground(Color.WHITE);
-		hero_name_lbl_6.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_6.setBounds(495, 221, 179, 28);
-		contentPane.add(hero_name_lbl_6);
-		
-		
-		JLabel back_lbl = new JLabel();
-		back_lbl.setBounds(0, 0, 684, 682);
-		Image backResizedImage = backImage.getScaledInstance(back_lbl.getWidth(), back_lbl.getHeight(), 0);
-		back_lbl.setIcon(new ImageIcon(backResizedImage));
-		
-		
-		contentPane.add(back_lbl);
-		
-		
-		
-		Pick_A_Hero_Listener PHL = new Pick_A_Hero_Listener();
-		hero_pick_lbl_1.addMouseListener(PHL);
-		hero_pick_lbl_2.addMouseListener(PHL);
-		hero_pick_lbl_3.addMouseListener(PHL);
-		hero_pick_lbl_4.addMouseListener(PHL);
-		hero_pick_lbl_5.addMouseListener(PHL);
-		hero_pick_lbl_6.addMouseListener(PHL);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700, 720);
-		this.setVisible(true);
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Name_Frame frame = new Name_Frame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public Pick_A_Hero(User user) {
+		xristis = user;
+		try {
+			background = ImageIO.read(new File("start.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setUndecorated(true);
+		back = new BackgroundPanel(background);
+		back.setTransparentAdd(true);
+		setContentPane(back);
+		back.setLayout(new BorderLayout(5, 5));
+		
+		try{
+			audio = AudioSystem.getAudioInputStream(new File("battle_theme.wav").getAbsoluteFile());
+			clip = AudioSystem.getClip();
+			clip.open(audio);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		//
+		title = new JLabel("\u0394\u03B9\u03AC\u03BB\u03B5\u03BE\u03B5 \u03AE\u03C1\u03C9\u03B1");
+		title.setFont(new Font("Sylfaen", Font.PLAIN, 40));
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		back.add(title, BorderLayout.NORTH);
+		
+		//
+		helpPanel = new JPanel();
+		helpPanel.setBorder(new EmptyBorder(50, 200, 50, 200));
+		back.add(helpPanel, BorderLayout.CENTER);
+		helpPanel.setLayout(new GridLayout(5, 3, 10, 20));
+		
+		lab1 = new JLabel("Hero1");
+		lab1.setHorizontalAlignment(SwingConstants.CENTER);
+		lab1.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab1);
+		
+		lab2 = new JLabel("Hero2");
+		lab2.setHorizontalAlignment(SwingConstants.CENTER);
+		lab2.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab2);
+		lab2.setLabelFor(pl2);
+		
+		lab3 = new JLabel("Hero3");
+		lab3.setHorizontalAlignment(SwingConstants.CENTER);
+		lab3.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab3);
+		lab3.setLabelFor(pl3);
+		
+		pl1 = new JLabel("");
+		pl1.setIcon(new ImageIcon("hero_pick_1.jpg"));
+		pl1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl1);
+		
+		pl2 = new JLabel("");
+		pl2.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl2);
+		
+		pl3 = new JLabel("");
+		pl3.setIcon(new ImageIcon("hero_pick_3.jpg"));
+		pl3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl3);
+		
+		lab4 = new JLabel("Hero4");
+		lab4.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab4.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab4);
+		
+		lab5 = new JLabel("Hero5");
+		lab5.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab5.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab5);
+		
+		lab6 = new JLabel("Hero6");
+		lab6.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab6.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab6);
+		
+		pl4 = new JLabel("");
+		pl4.setIcon(new ImageIcon("hero_pick_1.jpg"));
+		pl4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl4);
+		
+		pl5 = new JLabel("");
+		pl5.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl5);
+		
+		pl6 = new JLabel("");
+		pl6.setIcon(new ImageIcon("hero_pick_3.jpg"));
+		pl6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl6);
+		
+		align = new JLabel("");
+		helpPanel.add(align);
+		
+		play = new JButton("\u03A0\u03B1\u03AF\u03BE\u03B5");
+		play.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Pick_A_Hero.this.setVisible(false);
+				pista = new Board();
+				pista.setVisible(true);
+			}
+		});
+		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(play);
+		
+		//
+		quitPanel = new JPanel();
+		quit = new JButton("\u0388\u03BE\u03BF\u03B4\u03BF\u03C2");
+		quit.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		quit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		quitPanel.setLayout(new BorderLayout(0, 0));
+		
+		piso = new JButton("\u03A0\u03AF\u03C3\u03C9");
+		piso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clip.stop();
+				Pick_A_Hero.this.setVisible(false);
+				name = new Name_Frame();
+				name.setVisible(true);
+			}
+		});
+		piso.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		quitPanel.add(piso, BorderLayout.WEST);
+		quitPanel.add(quit, BorderLayout.EAST);
+		back.add(quitPanel, BorderLayout.SOUTH);
+		
+		Pick_A_Hero_Listener PHL = new Pick_A_Hero_Listener();
+		pl1.addMouseListener(PHL);
+		pl2.addMouseListener(PHL);
+		pl3.addMouseListener(PHL);
+		pl4.addMouseListener(PHL);
+		pl5.addMouseListener(PHL);
+		pl6.addMouseListener(PHL);
+	}
+
 	public Pick_A_Hero(User user, User user2) {
 		xristis = user;
 		xristis2 = user2;
-		contentPane = new JPanel();
+		try {
+			background = ImageIO.read(new File("start.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setUndecorated(true);
+		back = new BackgroundPanel(background);
+		back.setTransparentAdd(true);
+		setContentPane(back);
+		back.setLayout(new BorderLayout(5, 5));
 		
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-	
-		back_anim_icon= new ImageIcon("fire.gif"); 
+		try{
+			audio = AudioSystem.getAudioInputStream(new File("battle_theme.wav").getAbsoluteFile());
+			clip = AudioSystem.getClip();
+			clip.open(audio);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
-	
+		//
+		title = new JLabel("\u0394\u03B9\u03AC\u03BB\u03B5\u03BE\u03B5 \u03AE\u03C1\u03C9\u03B1");
+		title.setFont(new Font("Sylfaen", Font.PLAIN, 40));
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		back.add(title, BorderLayout.NORTH);
 		
-		                                           //This JLabel is hidden behind the backround image and when a hero is clicked
-		Anim_lbl = new JLabel();                         //it receives the ImageIcon and the bounds are changing
-		Anim_lbl.setBounds(495, 484, 179, 198);                                                  
-		contentPane.add(Anim_lbl);
+		//
+		helpPanel = new JPanel();
+		helpPanel.setBorder(new EmptyBorder(50, 200, 50, 200));
+		back.add(helpPanel, BorderLayout.CENTER);
+		helpPanel.setLayout(new GridLayout(5, 3, 10, 20));
 		
+		lab1 = new JLabel("Hero1");
+		lab1.setHorizontalAlignment(SwingConstants.CENTER);
+		lab1.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab1);
 		
-		hero_pick_lbl_1 = new JLabel();
-		hero_pick_lbl_1.setBounds(10, 30, 179, 198);  
-		ImageIcon heriIcon_1= new ImageIcon("hero_pick_1.jpg");   //heroIcon_1
-		Image h_1 = heriIcon_1.getImage().getScaledInstance(hero_pick_lbl_1.getWidth(), hero_pick_lbl_1.getHeight(), 0);
-		hero_pick_lbl_1.setIcon(new ImageIcon(h_1));
-		hero_pick_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_1);
+		lab2 = new JLabel("Hero2");
+		lab2.setHorizontalAlignment(SwingConstants.CENTER);
+		lab2.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab2);
+		lab2.setLabelFor(pl2);
 		
+		lab3 = new JLabel("Hero3");
+		lab3.setHorizontalAlignment(SwingConstants.CENTER);
+		lab3.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(lab3);
+		lab3.setLabelFor(pl3);
 		
+		pl1 = new JLabel("");
+		pl1.setIcon(new ImageIcon("hero_pick_1.jpg"));
+		pl1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl1);
 		
-		hero_pick_lbl_2 = new JLabel();
-		hero_pick_lbl_2.setBounds(247, 30, 179, 198);
-		ImageIcon heriIcon_2= new ImageIcon("hero_pick_2.jpg");   //heroIcon_2
-		Image h_2 = heriIcon_2.getImage().getScaledInstance(hero_pick_lbl_2.getWidth(), hero_pick_lbl_2.getHeight(), 0);
-		hero_pick_lbl_2.setIcon(new ImageIcon(h_2));
-		hero_pick_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_2);
+		pl2 = new JLabel("");
+		pl2.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl2);
 		
-		hero_pick_lbl_3 = new JLabel();
-		hero_pick_lbl_3.setBounds(495, 30, 179, 198);
-		ImageIcon heriIcon_3= new ImageIcon("hero_pick_3.jpg");   //heroIcon_3
-		Image h_3 = heriIcon_3.getImage().getScaledInstance(hero_pick_lbl_3.getWidth(), hero_pick_lbl_3.getHeight(), 0);
-		hero_pick_lbl_3.setIcon(new ImageIcon(h_3));
-		hero_pick_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_3);
+		pl3 = new JLabel("");
+		pl3.setIcon(new ImageIcon("hero_pick_3.jpg"));
+		pl3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl3);
 		
-		hero_pick_lbl_4 = new JLabel("New label");
-		hero_pick_lbl_4.setBounds(10, 260, 179, 198);
-		hero_pick_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_4);
+		lab4 = new JLabel("Hero4");
+		lab4.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab4.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab4);
 		
-		hero_pick_lbl_5 = new JLabel("New label");
-		hero_pick_lbl_5.setBounds(247, 260, 179, 198);
-		hero_pick_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_5);
+		lab5 = new JLabel("Hero5");
+		lab5.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab5.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab5);
 		
-		hero_pick_lbl_6 = new JLabel("New label");
-		hero_pick_lbl_6.setBounds(495, 260, 179, 198);
-		hero_pick_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		contentPane.add(hero_pick_lbl_6);
+		lab6 = new JLabel("Hero6");
+		lab6.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lab6.setHorizontalAlignment(SwingConstants.CENTER);
+		helpPanel.add(lab6);
 		
+		pl4 = new JLabel("");
+		pl4.setIcon(new ImageIcon("hero_pick_1.jpg"));
+		pl4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl4);
 		
-		ImageIcon  heroIcon=new  ImageIcon("anim.gif");
-		Image heroImage=heroIcon.getImage();
+		pl5 = new JLabel("");
+		pl5.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl5);
 		
+		pl6 = new JLabel("");
+		pl6.setIcon(new ImageIcon("hero_pick_3.jpg"));
+		pl6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpPanel.add(pl6);
 		
-		JButton btnContinue = new JButton("Continue"); //button for after choise
-		btnContinue.setBackground(Color.BLACK);
-		btnContinue.setForeground(Color.WHITE);
-		btnContinue.setFont(new Font("Snap ITC", Font.PLAIN, 17));
-		btnContinue.setBounds(280, 618, 146, 44);
+		align = new JLabel("");
+		helpPanel.add(align);
 		
-		contBtLst=new continueButtonListener();
-		btnContinue.addActionListener(contBtLst);
+		play = new JButton("\u03A0\u03B1\u03AF\u03BE\u03B5");
+		play.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Pick_A_Hero.this.setVisible(false);
+				pista = new Board();
+				pista.setVisible(true);
+			}
+		});
+		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		helpPanel.add(play);
 		
-		contentPane.add(btnContinue);
-		ImageIcon  backimgIcon=new  ImageIcon("backimg.jpg");
-		Image backImage=backimgIcon.getImage();
+		//
+		quitPanel = new JPanel();
+		quit = new JButton("\u0388\u03BE\u03BF\u03B4\u03BF\u03C2");
+		quit.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		quit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		quitPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel hero_name_lbl_1 = new JLabel("Hero 1 name");
-		hero_name_lbl_1.setForeground(Color.WHITE);
-		hero_name_lbl_1.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_1.setBounds(10, 0, 179, 28);
-		contentPane.add(hero_name_lbl_1);
-		
-		hero_name_lbl_2 = new JLabel("Hero 2 name");
-		hero_name_lbl_2.setForeground(Color.WHITE);
-		hero_name_lbl_2.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_2.setBounds(247, 0, 179, 28);
-		contentPane.add(hero_name_lbl_2);
-		
-		hero_name_lbl_3 = new JLabel("Hero 3 name");
-		hero_name_lbl_3.setForeground(Color.WHITE);
-		hero_name_lbl_3.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_3.setBounds(495, 0, 179, 28);
-		contentPane.add(hero_name_lbl_3);
-		
-		hero_name_lbl_4 = new JLabel("Hero 4 name");
-		hero_name_lbl_4.setForeground(Color.WHITE);
-		hero_name_lbl_4.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_4.setBounds(10, 226, 179, 28);
-		contentPane.add(hero_name_lbl_4);
-		
-		hero_name_lbl_5 = new JLabel("Hero 5 name");
-		hero_name_lbl_5.setForeground(Color.WHITE);
-		hero_name_lbl_5.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_5.setBounds(247, 221, 179, 28);
-		contentPane.add(hero_name_lbl_5);
-		
-		hero_name_lbl_6 = new JLabel("Hero 6 name");
-		hero_name_lbl_6.setForeground(Color.WHITE);
-		hero_name_lbl_6.setFont(new Font("Algerian", Font.PLAIN, 13));
-		hero_name_lbl_6.setBounds(495, 221, 179, 28);
-		contentPane.add(hero_name_lbl_6);
-		
-		
-		JLabel back_lbl = new JLabel();
-		back_lbl.setBounds(0, 0, 684, 682);
-		Image backResizedImage = backImage.getScaledInstance(back_lbl.getWidth(), back_lbl.getHeight(), 0);
-		back_lbl.setIcon(new ImageIcon(backResizedImage));
-		
-		
-		contentPane.add(back_lbl);
-		
-		
+		piso = new JButton("\u03A0\u03AF\u03C3\u03C9");
+		piso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clip.stop();
+				Pick_A_Hero.this.setVisible(false);
+				name = new Name_Frame();
+				name.setVisible(true);
+			}
+		});
+		piso.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		quitPanel.add(piso, BorderLayout.WEST);
+		quitPanel.add(quit, BorderLayout.EAST);
+		back.add(quitPanel, BorderLayout.SOUTH);
 		
 		Pick_A_Hero_Listener PHL = new Pick_A_Hero_Listener();
-		hero_pick_lbl_1.addMouseListener(PHL);
-		hero_pick_lbl_2.addMouseListener(PHL);
-		hero_pick_lbl_3.addMouseListener(PHL);
-		hero_pick_lbl_4.addMouseListener(PHL);
-		hero_pick_lbl_5.addMouseListener(PHL);
-		hero_pick_lbl_6.addMouseListener(PHL);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700, 720);
-		this.setVisible(true);
+		pl1.addMouseListener(PHL);
+		pl2.addMouseListener(PHL);
+		pl3.addMouseListener(PHL);
+		pl4.addMouseListener(PHL);
+		pl5.addMouseListener(PHL);
+		pl6.addMouseListener(PHL);
 	}
 	
 	class Pick_A_Hero_Listener implements MouseListener{
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
-			if(e.getSource()==hero_pick_lbl_1){
-				back_anim_icon= new ImageIcon("hero_pick_anim_1.gif"); 
-				back_anim_img = back_anim_icon.getImage().getScaledInstance(Anim_lbl.getWidth(), Anim_lbl.getHeight(), 0); 
-			
-				Anim_lbl.setIcon(new ImageIcon(back_anim_img));
-				Anim_lbl.setBounds(hero_pick_lbl_1.getX(), hero_pick_lbl_1.getY(), hero_pick_lbl_1.getWidth(), hero_pick_lbl_1.getHeight());
-			}
-			else if(e.getSource()==hero_pick_lbl_2){
-				back_anim_icon= new ImageIcon("hero_pick_anim_2.gif"); 
-				back_anim_img = back_anim_icon.getImage().getScaledInstance(Anim_lbl.getWidth(), Anim_lbl.getHeight(), 0); 
-				
-				Anim_lbl.setIcon(new ImageIcon(back_anim_img));
-				Anim_lbl.setBounds(hero_pick_lbl_2.getX(), hero_pick_lbl_2.getY(), hero_pick_lbl_2.getWidth(), hero_pick_lbl_2.getHeight());
-			}
-			else if(e.getSource()==hero_pick_lbl_3){
-				back_anim_icon= new ImageIcon("hero_pick_anim_3.gif"); 
-				back_anim_img = back_anim_icon.getImage().getScaledInstance(Anim_lbl.getWidth(), Anim_lbl.getHeight(), 0); 
-				
-				Anim_lbl.setIcon(new ImageIcon(back_anim_img));
-				Anim_lbl.setBounds(hero_pick_lbl_3.getX(), hero_pick_lbl_3.getY(), hero_pick_lbl_3.getWidth(), hero_pick_lbl_3.getHeight());
-			}
-			
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseEntered(MouseEvent e) {
+			if(e.getSource() == pl1){
+				help = new ImageIcon("hero_pick_anim_1.gif"); 
+				help2 = help.getImage().getScaledInstance(pl1.getWidth(), pl1.getHeight(), 0);
+				pl1.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl2){
+				help = new ImageIcon("hero_pick_anim_2.gif"); 
+				help2 = help.getImage().getScaledInstance(pl2.getWidth(), pl2.getHeight(), 0);
+				pl2.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl3){
+				help = new ImageIcon("hero_pick_anim_3.gif"); 
+				help2 = help.getImage().getScaledInstance(pl3.getWidth(), pl3.getHeight(), 0);
+				pl3.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl4){
+				help = new ImageIcon("hero_pick_anim_1.gif"); 
+				help2 = help.getImage().getScaledInstance(pl4.getWidth(), pl4.getHeight(), 0);
+				pl4.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl5){
+				help = new ImageIcon("hero_pick_anim_2.gif"); 
+				help2 = help.getImage().getScaledInstance(pl5.getWidth(), pl5.getHeight(), 0);
+				pl5.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl6){
+				help = new ImageIcon("hero_pick_anim_3.gif"); 
+				help2 = help.getImage().getScaledInstance(pl6.getWidth(), pl6.getHeight(), 0);
+				pl6.setIcon(new ImageIcon(help2));
+			}
 		}
 
 		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseExited(MouseEvent e) {
+			if(e.getSource() == pl1){
+				help = new ImageIcon("hero_pick_1.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl1.getWidth(), pl1.getHeight(), 0);
+				pl1.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl2){
+				help = new ImageIcon("hero_pick_2.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl2.getWidth(), pl2.getHeight(), 0);
+				pl2.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl3){
+				help = new ImageIcon("hero_pick_3.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl3.getWidth(), pl3.getHeight(), 0);
+				pl3.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl4){
+				help = new ImageIcon("hero_pick_1.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl4.getWidth(), pl4.getHeight(), 0);
+				pl4.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl5){
+				help = new ImageIcon("hero_pick_2.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl5.getWidth(), pl5.getHeight(), 0);
+				pl5.setIcon(new ImageIcon(help2));
+			}
+			else if(e.getSource() == pl6){
+				help = new ImageIcon("hero_pick_3.jpg"); 
+				help2 = help.getImage().getScaledInstance(pl6.getWidth(), pl6.getHeight(), 0);
+				pl6.setIcon(new ImageIcon(help2));
+			}
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
-		}
-
-	
-			
-		}
-	
-	public class continueButtonListener implements ActionListener{
-
-		
-		public void actionPerformed(ActionEvent arg0) {
-			new Board();
-			//na mpei elegxos gia ena h gia dyo paixtes
-			
-		}
-		
+		}	
 	}
-	}
+}
