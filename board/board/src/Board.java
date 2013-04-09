@@ -20,14 +20,14 @@ public class Board extends JFrame{
 	private JLabel backLabel;
 	private Random r;
 	private JPanel mainPanel;
+	private User xristis;
 	private MyGlassPane myGlassPane;
-	private int row;
-	private int size;
+	private int row, size;
 	private int playerX;
 	private int playerY;
 	
-	
-	public Board(){
+	public Board(User user){
+		xristis = user;
 		row=1;
 		playerX=0;
 		playerY=0;

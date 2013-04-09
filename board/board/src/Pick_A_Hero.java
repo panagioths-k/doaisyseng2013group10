@@ -159,7 +159,7 @@ public class Pick_A_Hero extends JFrame {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Pick_A_Hero.this.setVisible(false);
-				pista = new Board();
+				pista = new Board(xristis);
 				pista.setVisible(true);
 			}
 		});
@@ -306,7 +306,7 @@ public class Pick_A_Hero extends JFrame {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Pick_A_Hero.this.setVisible(false);
-				pista = new Board();
+				pista = new Board(xristis);
 				pista.setVisible(true);
 			}
 		});
