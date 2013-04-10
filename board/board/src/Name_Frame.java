@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,11 +19,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.Color;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 
 public class Name_Frame extends JFrame {
 
@@ -36,14 +38,13 @@ public class Name_Frame extends JFrame {
 	private Image background;
 	private BackgroundPanel back;
 	private JLabel title, label, player1, player2;
-	private JButton play, quit, piso;
-	private JTextField name1, name2;
-	private Document doc, doc2;
+	private JButton quit, piso, play;
 	private Clip clip;
 	private AudioInputStream audio;
+	private boolean flag;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
-	private boolean flag;
+	private JTextField name1, name2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,8 +66,9 @@ public class Name_Frame extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setUndecorated(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		back = new BackgroundPanel(background);
 		back.setTransparentAdd(true);
 		setContentPane(back);
@@ -90,25 +92,31 @@ public class Name_Frame extends JFrame {
 		
 		//
 		helpPanel = new JPanel();
-		helpPanel.setBorder(new EmptyBorder(250, 500, 200, 500));
 		back.add(helpPanel, BorderLayout.CENTER);
-		helpPanel.setLayout(new GridLayout(4, 2, 0, 30));
+		GridBagLayout gbl_helpPanel = new GridBagLayout();
+		gbl_helpPanel.columnWidths = new int[] {250};
+		gbl_helpPanel.rowHeights = new int[] {50, 50, 50, 50};
+		helpPanel.setLayout(gbl_helpPanel);
 		
 		label = new JLabel("\u0391\u03C1\u03B9\u03B8\u03BC\u03CC\u03C2 \u03C0\u03B1\u03B9\u03C7\u03C4\u03CE\u03BD");
 		label.setForeground(Color.ORANGE);
+		label.setHorizontalAlignment(SwingConstants.LEFT);
 		label.setFont(new Font("Sylfaen", Font.BOLD, 20));
-		helpPanel.add(label);
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.insets = new Insets(0, 0, 5, 0);
+		gbc_label.gridx = 0;
+		gbc_label.gridy = 0;
+		helpPanel.add(label, gbc_label);
 		
 		flag = false;
 		comboBox = new JComboBox();
-		comboBox.setToolTipText("");
-		comboBox.setMaximumRowCount(2);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comboBox.getSelectedItem().equals("2"))
 				{
 					player2.setVisible(true);
 					name2.setVisible(true);
+					play.setEnabled(false);
 					flag = true;
 				}
 				else
@@ -118,36 +126,55 @@ public class Name_Frame extends JFrame {
 				}
 			}
 		});
+		comboBox.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
-		helpPanel.add(comboBox);
-		comboBox.setPreferredSize(new Dimension(10,10));
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 0;
+		helpPanel.add(comboBox, gbc_comboBox);
 		
 		player1 = new JLabel("\u03A0\u03B1\u03AF\u03BA\u03C4\u03B7\u03C2 1");
 		player1.setForeground(Color.ORANGE);
 		player1.setFont(new Font("Sylfaen", Font.BOLD, 20));
-		helpPanel.add(player1);
+		GridBagConstraints gbc_player1 = new GridBagConstraints();
+		gbc_player1.insets = new Insets(0, 0, 5, 0);
+		gbc_player1.gridx = 0;
+		gbc_player1.gridy = 1;
+		helpPanel.add(player1, gbc_player1);
 		
 		name1 = new JTextField();
-		helpPanel.add(name1);
+		name1.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		GridBagConstraints gbc_name1 = new GridBagConstraints();
+		gbc_name1.insets = new Insets(0, 0, 5, 0);
+		gbc_name1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_name1.gridx = 1;
+		gbc_name1.gridy = 1;
+		helpPanel.add(name1, gbc_name1);
 		name1.setColumns(10);
 		
 		player2 = new JLabel("\u03A0\u03B1\u03AF\u03BA\u03C4\u03B7\u03C2 2");
 		player2.setForeground(Color.ORANGE);
 		player2.setFont(new Font("Sylfaen", Font.BOLD, 20));
-		helpPanel.add(player2);
+		GridBagConstraints gbc_player2 = new GridBagConstraints();
+		gbc_player2.insets = new Insets(0, 0, 5, 0);
+		gbc_player2.gridx = 0;
+		gbc_player2.gridy = 2;
+		helpPanel.add(player2, gbc_player2);
 		player2.setVisible(false);
 		
 		name2 = new JTextField();
-		helpPanel.add(name2);
+		name2.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		GridBagConstraints gbc_name2 = new GridBagConstraints();
+		gbc_name2.insets = new Insets(0, 0, 5, 0);
+		gbc_name2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_name2.gridx = 1;
+		gbc_name2.gridy = 2;
+		helpPanel.add(name2, gbc_name2);
 		name2.setColumns(10);
 		name2.setVisible(false);
+		
 		play = new JButton("\u03A0\u03B1\u03AF\u03BE\u03B5");
-		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		play.setEnabled(false);
-		doc = name1.getDocument();
-		doc2 = name2.getDocument();
-		doc.addDocumentListener(new JButtonStateController(play));
-		doc2.addDocumentListener(new JButtonStateController(play));
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clip.stop();
@@ -155,19 +182,31 @@ public class Name_Frame extends JFrame {
 				if (flag) 
 				{
 					user2 = new User(name2.getText());
-					Name_Frame.this.setVisible(false);
 					hero = new Pick_A_Hero(user, user2);
 					hero.setVisible(true);
 				}
 				else
 				{
-					Name_Frame.this.setVisible(false);
 					hero = new Pick_A_Hero(user);
 					hero.setVisible(true);
 				}
+				Name_Frame.this.setVisible(false);
 			}
 		});
-		helpPanel.add(play);
+		play.setEnabled(false);
+		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		GridBagConstraints gbc_play = new GridBagConstraints();
+		gbc_play.gridx = 0;
+		gbc_play.gridy = 3;
+		helpPanel.add(play, gbc_play);
+		FieldListener fieldListener = new FieldListener(play);
+		fieldListener.registerDoc(name1.getDocument());
+		if (flag)
+		{
+			FieldListener field2 = new FieldListener(play);
+			field2.registerDoc(name1.getDocument());
+			field2.registerDoc(name2.getDocument());
+		}
 		
 		//
 		quitPanel = new JPanel();
@@ -196,26 +235,41 @@ public class Name_Frame extends JFrame {
 	}
 }
 
-class JButtonStateController implements DocumentListener {
-	 JButton button;
-	  
-	  JButtonStateController(JButton button) {
-	     this.button = button ;
-	  }
+class FieldListener implements DocumentListener {
+	   private List<Document> docs = new ArrayList<Document>();
+	   private JButton button;
 
-	  public void changedUpdate(DocumentEvent e) {
-	    disableIfEmpty(e);
-	  }
+	   public FieldListener(JButton button) {
+	      this.button = button;
+	   }
 
-	  public void insertUpdate(DocumentEvent e) {
-	    disableIfEmpty(e);
-	  }
+	   public void registerDoc(Document doc) {
+	      docs.add(doc);
+	      doc.addDocumentListener(this);
+	   }
 
-	  public void removeUpdate(DocumentEvent e) {
-	    disableIfEmpty(e);
-	  }
+	   @Override
+	   public void changedUpdate(DocumentEvent arg0) {
+	      update();
+	   }
 
-	  public void disableIfEmpty(DocumentEvent e) {
-	    button.setEnabled(e.getDocument().getLength() >= 4 || e.getDocument().getLength() >= 8);
-	  }
+	   @Override
+	   public void insertUpdate(DocumentEvent arg0) {
+	      update();
+	   }
+
+	   @Override
+	   public void removeUpdate(DocumentEvent arg0) {
+	      update();
+	   }
+
+	   private void update() {
+	      for (Document doc : docs) {
+	         if (doc.getLength() <= 3) {
+	            button.setEnabled(false);
+	            return;
+	         }
+	      }
+	      button.setEnabled(true);
+	   }
 }
