@@ -1,7 +1,9 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -13,10 +15,10 @@ public class Board extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton diceButton;
 	private JButton coinButton;
-	private JLabel heroLabel;
-	private JLabel monsterLabel;
-	private JTextArea heroStatLabel;
-	private JTextArea monsterStatLabel;
+	private JLabel hero1Label;
+	private JLabel hero2Label;
+	private JTextArea hero1StatLabel;
+	private JTextArea hero2StatLabel;
 	private JLabel backLabel;
 	private Random r;
 	private JPanel mainPanel;
@@ -25,6 +27,8 @@ public class Board extends JFrame{
 	private int row, size;
 	private int playerX;
 	private int playerY;
+	private int widthSize;
+	private int heightSize;
 	
 	public Board(User user){
 		xristis = user;
@@ -32,24 +36,34 @@ public class Board extends JFrame{
 		playerX=0;
 		playerY=0;
 		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double fwidth = screenSize.getWidth();
+		double fheight = screenSize.getHeight();
+		
+		int iwidth=(int)fwidth;
+		int iheight=(int)fheight;
+		
+		widthSize=iwidth/20;
+		heightSize=iheight/10;
+		
 		myGlassPane=new MyGlassPane();
 		this.setGlassPane(myGlassPane);
 		myGlassPane.setVisible(true);
 		
-		setBounds(100, 100, 1800, 1000);
+		setBounds(100, 100, iwidth, iheight);
 		mainPanel = new JPanel();
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 		
 		diceButton=new JButton("Roll");
-		diceButton.setBounds(1502,200, 298, 50);
+		diceButton.setBounds((16*widthSize),(2*heightSize),(3*widthSize),(heightSize/2));
 		//diceButton.setBackground(Color.BLACK);
 		diceButton.setForeground(Color.RED);
 		mainPanel.add(diceButton);
 		
 		coinButton=new JButton("Flip");
-		coinButton.setBounds(1200,200, 300, 50);
+		coinButton.setBounds((13*widthSize),(2*heightSize),(3*widthSize),(heightSize/2));
 		//coinButton.setBackground(Color.BLACK);
 		coinButton.setForeground(Color.RED);
 		mainPanel.add(coinButton);
@@ -59,46 +73,46 @@ public class Board extends JFrame{
 		diceButton.addActionListener(listener);
 		//dokimastikoi listener
 		
-		ImageIcon  heroIcon=new  ImageIcon("hero.jpg");
-		Image heroImage=heroIcon.getImage();
-		heroLabel=new JLabel();
-		heroLabel.setBounds(1200,300,300,300);
-		Image heroResizedImage = heroImage.getScaledInstance(heroLabel.getWidth(), heroLabel.getHeight(), 0);
-		heroLabel.setIcon(new ImageIcon(heroResizedImage));
+		ImageIcon  hero1Icon=new  ImageIcon("hero_pick_1.jpg");
+		Image hero1Image=hero1Icon.getImage();
+		hero1Label=new JLabel();
+		hero1Label.setBounds((13*widthSize),(4*heightSize),(3*widthSize),(3*heightSize));
+		Image hero1ResizedImage = hero1Image.getScaledInstance(hero1Label.getWidth(), hero1Label.getHeight(), 0);
+		hero1Label.setIcon(new ImageIcon(hero1ResizedImage));
 		
-		mainPanel.add(heroLabel);
+		mainPanel.add(hero1Label);
 		//gia thn eikona tou hrwa
 		
 		
-		ImageIcon  monsterIcon=new  ImageIcon("Cerberus.jpg");
-		Image monsterImage=monsterIcon.getImage();
-		monsterLabel=new JLabel();
-		monsterLabel.setBounds(1200,600,300,300);
-		Image monsterResizedImage = monsterImage.getScaledInstance(monsterLabel.getWidth(), monsterLabel.getHeight(), 0);
-		monsterLabel.setIcon(new ImageIcon(monsterResizedImage));
+		ImageIcon  hero2Icon=new  ImageIcon("hero_pick_2.jpg");
+		Image hero2Image=hero2Icon.getImage();
+		hero2Label=new JLabel();
+		hero2Label.setBounds((13*widthSize),(7*heightSize),(3*widthSize),(3*heightSize));
+		Image hero2ResizedImage = hero2Image.getScaledInstance(hero2Label.getWidth(), hero2Label.getHeight(), 0);
+		hero2Label.setIcon(new ImageIcon(hero2ResizedImage));
 		
-		mainPanel.add(monsterLabel);
+		mainPanel.add(hero2Label);
 		//gia thn eikona tou antipalou
 		
-		heroStatLabel=new JTextArea();
-		heroStatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
-		heroStatLabel.setForeground(Color.WHITE);
-		heroStatLabel.setText("Skills \n Life:10 \n Damage: 50");
-		heroStatLabel.setBounds(1500,300,300,300);
-		heroStatLabel.setBackground(Color.BLACK);
-		heroStatLabel.setEditable(false);
+		hero1StatLabel=new JTextArea();
+		hero1StatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
+		hero1StatLabel.setForeground(Color.WHITE);
+		hero1StatLabel.setText("Skills \n Life:10 \n Damage: 50");
+		hero1StatLabel.setBounds((16*widthSize),(4*heightSize),(3*widthSize),(3*heightSize));
+		hero1StatLabel.setBackground(Color.BLACK);
+		hero1StatLabel.setEditable(false);
 		//gia na min allazei
-		mainPanel.add(heroStatLabel);
+		mainPanel.add(hero1StatLabel);
 		//gia to label me ta statistika tou hrwa
 		
-		monsterStatLabel=new JTextArea();
-		monsterStatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
-		monsterStatLabel.setForeground(Color.WHITE);
-		monsterStatLabel.setText("Skills \n Life:10 \n Damage: 50");
-		monsterStatLabel.setBounds(1500,600,300,300);
-		monsterStatLabel.setBackground(Color.BLACK);
-		monsterStatLabel.setEditable(false);
-		mainPanel.add(monsterStatLabel);
+		hero2StatLabel=new JTextArea();
+		hero2StatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
+		hero2StatLabel.setForeground(Color.WHITE);
+		hero2StatLabel.setText("Skills \n Life:10 \n Damage: 50");
+		hero2StatLabel.setBounds((16*widthSize),(7*heightSize),(3*widthSize),(3*heightSize));
+		hero2StatLabel.setBackground(Color.BLACK);
+		hero2StatLabel.setEditable(false);
+		mainPanel.add(hero2StatLabel);
 		//gia to label me ta statistika tou teratos
 		
 		ImageIcon  background=new  ImageIcon("background.jpg");
@@ -115,7 +129,9 @@ public class Board extends JFrame{
 		r=new Random(System.currentTimeMillis());
 		//this.setContentPane(mainPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1760,1000);
+		this.setUndecorated(true);
+		this.setLocation(0,0);
+		this.setSize(iwidth,iheight);
 		this.setVisible(true);
 	}
 	
