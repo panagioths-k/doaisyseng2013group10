@@ -33,7 +33,7 @@ public class Name_Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel helpPanel, quitPanel;
 	private Pick_A_Hero hero;
-	private User user, user2;
+	private User user;
 	private Start_Frame start;
 	private Image background;
 	private BackgroundPanel back;
@@ -181,8 +181,8 @@ public class Name_Frame extends JFrame {
 				user = new User(name1.getText());
 				if (flag) 
 				{
-					user2 = new User(name2.getText());
-					hero = new Pick_A_Hero(user, user2);
+					//user2 = new User(name2.getText());
+					hero = new Pick_A_Hero(user);
 					hero.setVisible(true);
 				}
 				else
