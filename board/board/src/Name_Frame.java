@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -41,23 +40,9 @@ public class Name_Frame extends JFrame {
 	private JButton quit, piso, play;
 	private Clip clip;
 	private AudioInputStream audio;
-	private boolean flag;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private JTextField name1, name2;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Name_Frame frame = new Name_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Name_Frame() {
@@ -108,7 +93,6 @@ public class Name_Frame extends JFrame {
 		gbc_label.gridy = 0;
 		helpPanel.add(label, gbc_label);
 		
-		flag = false;
 		comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -117,7 +101,6 @@ public class Name_Frame extends JFrame {
 					player2.setVisible(true);
 					name2.setVisible(true);
 					play.setEnabled(false);
-					flag = true;
 				}
 				else
 				{
@@ -179,17 +162,8 @@ public class Name_Frame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				clip.stop();
 				user = new User(name1.getText());
-				if (flag) 
-				{
-					//user2 = new User(name2.getText());
-					hero = new Pick_A_Hero(user);
-					hero.setVisible(true);
-				}
-				else
-				{
-					hero = new Pick_A_Hero(user);
-					hero.setVisible(true);
-				}
+				hero = new Pick_A_Hero(user);
+				hero.setVisible(true);
 				Name_Frame.this.setVisible(false);
 			}
 		});
@@ -201,12 +175,6 @@ public class Name_Frame extends JFrame {
 		helpPanel.add(play, gbc_play);
 		FieldListener fieldListener = new FieldListener(play);
 		fieldListener.registerDoc(name1.getDocument());
-		if (flag)
-		{
-			FieldListener field2 = new FieldListener(play);
-			field2.registerDoc(name1.getDocument());
-			field2.registerDoc(name2.getDocument());
-		}
 		
 		//
 		quitPanel = new JPanel();

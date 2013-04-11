@@ -23,6 +23,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
+import java.awt.Toolkit;
+
 import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 
@@ -33,18 +35,28 @@ public class Pick_A_Hero extends JFrame {
 	private Name_Frame name;
 	private Board pista;
 	private User xristis;
-	private Image background;
+	private Image background, resize, help;
+	private ImageIcon hero, image;
 	private BackgroundPanel back;
-	private JLabel title, pl1, pl2, pl3, pl4, pl5, pl6, lab1, lab2, lab3, lab4, lab5, lab6, image;
+	private JLabel title, pl1, pl2, pl3, pl4, pl5, pl6, lab1, lab2, lab3, lab4, lab5, lab6;
 	private JButton quit, piso, play;
 	private Clip clip;
 	private AudioInputStream audio;
-	private ImageIcon help;
 	private Pick_A_Hero_Listener PHL;
+	private int helpWidth, helpHeight, widthSize, heightSize;
+	private double frameWidth, frameHeight;
 	
 	public Pick_A_Hero(User user) {
 		xristis = user;
 		PHL = new Pick_A_Hero_Listener();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frameWidth = screenSize.getWidth();
+		frameHeight = screenSize.getHeight();
+		helpWidth = (int)frameWidth;
+		helpHeight = (int)frameHeight;
+		widthSize = helpWidth / 7;
+		heightSize = helpHeight / 3;
+		
 		try {
 			background = ImageIO.read(new File("start.jpg"));
 		} catch (IOException e) {
@@ -75,7 +87,7 @@ public class Pick_A_Hero extends JFrame {
 		
 		//
 		helpPanel = new JPanel();
-		helpPanel.setBorder(new EmptyBorder(100, 0, 200, 0));
+		helpPanel.setBorder(new EmptyBorder(100, 0, 100, 0));
 		back.add(helpPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_helpPanel = new GridBagLayout();
 		gbl_helpPanel.columnWidths = new int[]{10, 10, 10};
@@ -107,7 +119,6 @@ public class Pick_A_Hero extends JFrame {
 		lab3.setHorizontalAlignment(SwingConstants.CENTER);
 		lab3.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		GridBagConstraints gbc_lab3 = new GridBagConstraints();
-		
 		gbc_lab3.insets = new Insets(0, 0, 5, 0);
 		gbc_lab3.gridx = 3;
 		gbc_lab3.gridy = 1;
@@ -117,10 +128,12 @@ public class Pick_A_Hero extends JFrame {
 		pl1 = new JLabel("");
 		pl1.setSize(new Dimension(5, 5));
 		pl1.setIconTextGap(0);
-		pl1.setIcon(new ImageIcon("Ares.jpg"));
+		hero = new  ImageIcon("Ares.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl1.setIcon(new ImageIcon(resize));
 		pl1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl1 = new GridBagConstraints();
-		
 		gbc_pl1.insets = new Insets(0, 0, 5, 5);
 		gbc_pl1.gridx = 1;
 		gbc_pl1.gridy = 2;
@@ -128,7 +141,10 @@ public class Pick_A_Hero extends JFrame {
 		pl1.addMouseListener(PHL);
 		
 		pl2 = new JLabel("");
-		pl2.setIcon(new ImageIcon("Cronus.jpg"));
+		hero = new  ImageIcon("Cronus.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl2.setIcon(new ImageIcon(resize));
 		pl2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl2 = new GridBagConstraints();
 		gbc_pl2.fill = GridBagConstraints.BOTH;
@@ -139,10 +155,12 @@ public class Pick_A_Hero extends JFrame {
 		pl2.addMouseListener(PHL);
 		
 		pl3 = new JLabel("");
-		pl3.setIcon(new ImageIcon("Hades.jpg"));
+		hero = new  ImageIcon("Hades.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl3.setIcon(new ImageIcon(resize));
 		pl3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl3 = new GridBagConstraints();
-		
 		gbc_pl3.insets = new Insets(0, 0, 5, 0);
 		gbc_pl3.gridx = 3;
 		gbc_pl3.gridy = 2;
@@ -180,7 +198,10 @@ public class Pick_A_Hero extends JFrame {
 		helpPanel.add(lab6, gbc_lab6);
 		
 		pl4 = new JLabel("");
-		pl4.setIcon(new ImageIcon("Poseidon.jpg"));
+		hero = new  ImageIcon("Poseidon.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl4.setIcon(new ImageIcon(resize));
 		pl4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl4 = new GridBagConstraints();
 		gbc_pl4.fill = GridBagConstraints.BOTH;
@@ -191,7 +212,10 @@ public class Pick_A_Hero extends JFrame {
 		pl4.addMouseListener(PHL);
 		
 		pl5 = new JLabel("");
-		pl5.setIcon(new ImageIcon("Uranus.jpg"));
+		hero = new  ImageIcon("Uranus.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl5.setIcon(new ImageIcon(resize));
 		pl5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl5 = new GridBagConstraints();
 		gbc_pl5.fill = GridBagConstraints.BOTH;
@@ -202,7 +226,10 @@ public class Pick_A_Hero extends JFrame {
 		pl5.addMouseListener(PHL);
 		
 		pl6 = new JLabel("");
-		pl6.setIcon(new ImageIcon("Zeus.jpg"));
+		hero = new  ImageIcon("Zeus.jpg");
+		help = hero.getImage();
+		resize = help.getScaledInstance(widthSize, heightSize, 0);
+		pl6.setIcon(new ImageIcon(resize));
 		pl6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl6 = new GridBagConstraints();
 		gbc_pl6.fill = GridBagConstraints.BOTH;
@@ -216,8 +243,9 @@ public class Pick_A_Hero extends JFrame {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Pick_A_Hero.this.setVisible(false);
-				pista = new Board(xristis, image.getIcon());
+				pista = new Board(xristis, image);
 				pista.setVisible(true);
+				clip.stop();
 			}
 		});
 		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
@@ -268,61 +296,38 @@ public class Pick_A_Hero extends JFrame {
 			pl6.setBorder(null);
 			if(e.getSource() == pl1){
 				pl1.setBorder(new LineBorder(Color.RED, 5));
-				image = pl1;
+				image = new ImageIcon("Ares.jpg");
 			}
 			else if(e.getSource() == pl2){
 				pl2.setBorder(new LineBorder(Color.RED, 5));
-				image = pl2;
+				image = new ImageIcon("Cronus.jpg");
 			}
 			else if(e.getSource() == pl3){
 				pl3.setBorder(new LineBorder(Color.RED, 5));
-				image = pl3;
+				image = new ImageIcon("Hades.jpg");
 			}
 			else if(e.getSource() == pl4){
 				pl4.setBorder(new LineBorder(Color.RED, 5));
-				image = pl4;
+				image = new ImageIcon("Poseidon.jpg");
 			}
 			else if(e.getSource() == pl5){
 				pl5.setBorder(new LineBorder(Color.RED, 5));
-				image = pl5;
+				image = new ImageIcon("Uranus.jpg");
 			}
 			else if(e.getSource() == pl6){
 				pl6.setBorder(new LineBorder(Color.RED, 5));
-				image = pl6;
+				image = new ImageIcon("Zeus.jpg");
 			}
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent e) {
-			
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
 		}
 
 		@Override
-		public void mouseExited(MouseEvent e) {
-			if(e.getSource() == pl1){
-				help = new ImageIcon("Ares.jpg"); 
-				pl1.setIcon(help);
-			}
-			else if(e.getSource() == pl2){
-				help = new ImageIcon("Cronus.jpg"); 
-				pl2.setIcon(help);
-			}
-			else if(e.getSource() == pl3){
-				help = new ImageIcon("Hades.jpg"); 
-				pl3.setIcon(help);
-			}
-			else if(e.getSource() == pl4){
-				help = new ImageIcon("Poseidon.jpg"); 
-				pl4.setIcon(help);
-			}
-			else if(e.getSource() == pl5){
-				help = new ImageIcon("Uranus.jpg"); 
-				pl5.setIcon(help);
-			}
-			else if(e.getSource() == pl6){
-				help = new ImageIcon("Zeus.jpg"); 
-				pl6.setIcon(help);
-			}
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
 		}
 
 		@Override

@@ -30,7 +30,7 @@ public class Board extends JFrame{
 	private int widthSize;
 	private int heightSize;
 	
-	public Board(User user, Icon heroimage){
+	public Board(User user, ImageIcon heroimage){
 		xristis = user;
 		row=1;
 		playerX=0;
@@ -73,8 +73,7 @@ public class Board extends JFrame{
 		diceButton.addActionListener(listener);
 		//dokimastikoi listener
 		
-		ImageIcon  hero1Icon = new  ImageIcon(""+heroimage);
-		Image hero1Image = hero1Icon.getImage();
+		Image hero1Image = heroimage.getImage();
 		hero1Label = new JLabel();
 		hero1Label.setBounds((13*widthSize),(4*heightSize),(3*widthSize),(3*heightSize));
 		Image hero1ResizedImage = hero1Image.getScaledInstance(hero1Label.getWidth(), hero1Label.getHeight(), 0);
@@ -98,9 +97,7 @@ public class Board extends JFrame{
 		backLabel.setBounds(0,0,this.getWidth(), this.getHeight());
 		Image resizedImage = image.getScaledInstance(backLabel.getWidth(), backLabel.getHeight(), 0);
 		backLabel.setIcon(new ImageIcon(resizedImage));
-		//prosarmogh eikonas fontou
-		
-		
+		//prosarmogh eikonas fontou	
 		
 		mainPanel.add(backLabel);
 		r=new Random(System.currentTimeMillis());
