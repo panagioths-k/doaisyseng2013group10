@@ -40,6 +40,7 @@ public class Pick_A_Hero extends JFrame {
 	private JButton quit, piso, play;
 	private Clip clip;
 	private AudioInputStream audio;
+	private Image help2;
 	private ImageIcon help;
 	private Pick_A_Hero_Listener PHL;
 
@@ -134,7 +135,7 @@ public class Pick_A_Hero extends JFrame {
 		pl1 = new JLabel("");
 		pl1.setSize(new Dimension(5, 5));
 		pl1.setIconTextGap(0);
-		pl1.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl1.setIcon(new ImageIcon("hero_pick_1.jpg"));
 		pl1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl1 = new GridBagConstraints();
 		
@@ -156,7 +157,7 @@ public class Pick_A_Hero extends JFrame {
 		pl2.addMouseListener(PHL);
 		
 		pl3 = new JLabel("");
-		pl3.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl3.setIcon(new ImageIcon("hero_pick_3.jpg"));
 		pl3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl3 = new GridBagConstraints();
 		
@@ -197,7 +198,7 @@ public class Pick_A_Hero extends JFrame {
 		helpPanel.add(lab6, gbc_lab6);
 		
 		pl4 = new JLabel("");
-		pl4.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl4.setIcon(new ImageIcon("hero_pick_1.jpg"));
 		pl4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl4 = new GridBagConstraints();
 		gbc_pl4.fill = GridBagConstraints.BOTH;
@@ -219,7 +220,7 @@ public class Pick_A_Hero extends JFrame {
 		pl5.addMouseListener(PHL);
 		
 		pl6 = new JLabel("");
-		pl6.setIcon(new ImageIcon("hero_pick_2.jpg"));
+		pl6.setIcon(new ImageIcon("hero_pick_3.jpg"));
 		pl6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_pl6 = new GridBagConstraints();
 		gbc_pl6.fill = GridBagConstraints.BOTH;
@@ -239,7 +240,7 @@ public class Pick_A_Hero extends JFrame {
 		});
 		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		GridBagConstraints gbc_play = new GridBagConstraints();
-		gbc_play.fill = GridBagConstraints.BOTH;
+		gbc_play.fill = GridBagConstraints.VERTICAL;
 		gbc_play.insets = new Insets(0, 0, 0, 5);
 		gbc_play.gridx = 2;
 		gbc_play.gridy = 5;
@@ -330,35 +331,41 @@ public class Pick_A_Hero extends JFrame {
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			if(e.getSource() == pl1){
-				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl1.setIcon(help);
+				help = new ImageIcon("hero_pick_anim_1.gif"); 
+				help2 = help.getImage().getScaledInstance(pl1.getWidth(), pl1.getHeight(), 0);
+				pl1.setIcon(new ImageIcon(help2));
 			}
 			else if(e.getSource() == pl2){
 				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl2.setIcon(help);
+				help2 = help.getImage().getScaledInstance(pl2.getWidth(), pl2.getHeight(), 0);
+				pl2.setIcon(new ImageIcon(help2));
 			}
 			else if(e.getSource() == pl3){
-				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl3.setIcon(help);
+				help = new ImageIcon("hero_pick_anim_3.gif"); 
+				help2 = help.getImage().getScaledInstance(pl3.getWidth(), pl3.getHeight(), 0);
+				pl3.setIcon(new ImageIcon(help2));
 			}
 			else if(e.getSource() == pl4){
-				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl4.setIcon(help);
+				help = new ImageIcon("hero_pick_anim_1.gif"); 
+				help2 = help.getImage().getScaledInstance(pl4.getWidth(), pl4.getHeight(), 0);
+				pl4.setIcon(new ImageIcon(help2));
 			}
 			else if(e.getSource() == pl5){
 				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl5.setIcon(help);
+				help2 = help.getImage().getScaledInstance(pl5.getWidth(), pl5.getHeight(), 0);
+				pl5.setIcon(new ImageIcon(help2));
 			}
 			else if(e.getSource() == pl6){
-				help = new ImageIcon("hero_pick_anim_2.gif"); 
-				pl6.setIcon(help);
+				help = new ImageIcon("hero_pick_anim_3.gif"); 
+				help2 = help.getImage().getScaledInstance(pl6.getWidth(), pl6.getHeight(), 0);
+				pl6.setIcon(new ImageIcon(help2));
 			}
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			if(e.getSource() == pl1){
-				help = new ImageIcon("hero_pick_2.jpg"); 
+				help = new ImageIcon("hero_pick_1.jpg"); 
 				pl1.setIcon(help);
 			}
 			else if(e.getSource() == pl2){
@@ -366,11 +373,11 @@ public class Pick_A_Hero extends JFrame {
 				pl2.setIcon(help);
 			}
 			else if(e.getSource() == pl3){
-				help = new ImageIcon("hero_pick_2.jpg"); 
+				help = new ImageIcon("hero_pick_3.jpg"); 
 				pl3.setIcon(help);
 			}
 			else if(e.getSource() == pl4){
-				help = new ImageIcon("hero_pick_2.jpg"); 
+				help = new ImageIcon("hero_pick_1.jpg"); 
 				pl4.setIcon(help);
 			}
 			else if(e.getSource() == pl5){
@@ -378,7 +385,7 @@ public class Pick_A_Hero extends JFrame {
 				pl5.setIcon(help);
 			}
 			else if(e.getSource() == pl6){
-				help = new ImageIcon("hero_pick_2.jpg"); 
+				help = new ImageIcon("hero_pick_3.jpg"); 
 				pl6.setIcon(help);
 			}
 		}

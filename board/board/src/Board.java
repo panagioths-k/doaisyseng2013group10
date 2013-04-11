@@ -1,7 +1,9 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -27,6 +29,16 @@ public class Board extends JFrame{
 	private int playerY;
 	
 	public Board(User user){
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+		//Μετά κάνεις int τα double με cast
+		int iwidth=(int)width;
+		int iheight=(int)height;
+		this.setSize(iwidth,iheight);
+		//this.setUndecorated(true);
+		//για να αφαιρέσεις την γραμμή τίτλου
+		this.setLocation(0,0);
 		xristis = user;
 		row=1;
 		playerX=0;
