@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -40,26 +39,9 @@ public class Pick_A_Hero extends JFrame {
 	private JButton quit, piso, play;
 	private Clip clip;
 	private AudioInputStream audio;
-	private Image help2;
 	private ImageIcon help;
 	private Pick_A_Hero_Listener PHL;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Name_Frame frame = new Name_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
-	/**
-	 * @wbp.parser.constructor
-	 */
 	public Pick_A_Hero(User user) {
 		xristis = user;
 		PHL = new Pick_A_Hero_Listener();
