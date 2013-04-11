@@ -30,7 +30,7 @@ public class Board extends JFrame{
 	private int widthSize;
 	private int heightSize;
 	
-	public Board(User user){
+	public Board(User user, Icon heroimage){
 		xristis = user;
 		row=1;
 		playerX=0;
@@ -73,47 +73,24 @@ public class Board extends JFrame{
 		diceButton.addActionListener(listener);
 		//dokimastikoi listener
 		
-		ImageIcon  hero1Icon=new  ImageIcon("hero_pick_1.jpg");
-		Image hero1Image=hero1Icon.getImage();
-		hero1Label=new JLabel();
+		ImageIcon  hero1Icon = new  ImageIcon(""+heroimage);
+		Image hero1Image = hero1Icon.getImage();
+		hero1Label = new JLabel();
 		hero1Label.setBounds((13*widthSize),(4*heightSize),(3*widthSize),(3*heightSize));
 		Image hero1ResizedImage = hero1Image.getScaledInstance(hero1Label.getWidth(), hero1Label.getHeight(), 0);
 		hero1Label.setIcon(new ImageIcon(hero1ResizedImage));
-		
 		mainPanel.add(hero1Label);
 		//gia thn eikona tou hrwa
-		
-		
-		ImageIcon  hero2Icon=new  ImageIcon("hero_pick_2.jpg");
-		Image hero2Image=hero2Icon.getImage();
-		hero2Label=new JLabel();
-		hero2Label.setBounds((13*widthSize),(7*heightSize),(3*widthSize),(3*heightSize));
-		Image hero2ResizedImage = hero2Image.getScaledInstance(hero2Label.getWidth(), hero2Label.getHeight(), 0);
-		hero2Label.setIcon(new ImageIcon(hero2ResizedImage));
-		
-		mainPanel.add(hero2Label);
-		//gia thn eikona tou antipalou
 		
 		hero1StatLabel=new JTextArea();
 		hero1StatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
 		hero1StatLabel.setForeground(Color.WHITE);
-		hero1StatLabel.setText("Skills \n Life:10 \n Damage: 50");
+		hero1StatLabel.setText("Skills \nAttack:"+user.getAttack()+"\nDefence:"+user.getDefence()+"\nLife:"+user.getHealth());
 		hero1StatLabel.setBounds((16*widthSize),(4*heightSize),(3*widthSize),(3*heightSize));
 		hero1StatLabel.setBackground(Color.BLACK);
 		hero1StatLabel.setEditable(false);
-		//gia na min allazei
 		mainPanel.add(hero1StatLabel);
-		//gia to label me ta statistika tou hrwa
 		
-		hero2StatLabel=new JTextArea();
-		hero2StatLabel.setFont(new Font("Times New Roman",Font.BOLD,32));
-		hero2StatLabel.setForeground(Color.WHITE);
-		hero2StatLabel.setText("Skills \n Life:10 \n Damage: 50");
-		hero2StatLabel.setBounds((16*widthSize),(7*heightSize),(3*widthSize),(3*heightSize));
-		hero2StatLabel.setBackground(Color.BLACK);
-		hero2StatLabel.setEditable(false);
-		mainPanel.add(hero2StatLabel);
-		//gia to label me ta statistika tou teratos
 		
 		ImageIcon  background=new  ImageIcon("background.jpg");
 		Image image=background.getImage();
