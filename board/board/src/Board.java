@@ -26,8 +26,8 @@ import java.awt.Insets;
 public class Board extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
-	private JButton diceButton, coinButton, piso, quit;
-	private JLabel title, imageLabel, attack, defence, life, coinlbl, dicelbl, hero2lbl;
+	private JButton diceButton, coinButton, piso, quit, plusLife, plusAttack, plusDefence;
+	private JLabel title, imageLabel, attacklbl, defencelbl, life, coinlbl, dicelbl, hero2lbl, skillpointlbl;
 	private Random r;
 	private JPanel buttonPanel, imagePanel, quitPanel;
 	private User xristis;
@@ -41,6 +41,7 @@ public class Board extends JFrame{
 	//private ButtonListener listener;
 	private DiceListener dlistener;
 	private ImageIcon image;
+	private UpgradeSkillListener skillListener;
 	
 	public Board(User user, ImageIcon heroimage){
 		xristis = user;
@@ -142,28 +143,28 @@ public class Board extends JFrame{
 		hero2lbl.setIcon(new ImageIcon(hero2ResizedImage));
 		GridBagConstraints gbc_hero2lbl=new GridBagConstraints();
 		gbc_hero2lbl.insets=new Insets(0,(2*widthSize),0,0);
-		gbc_hero2lbl.gridx=(widthSize*4);
+		gbc_hero2lbl.gridx=1;
 		gbc_hero2lbl.gridy=0;
 		gbc_hero2lbl.anchor=GridBagConstraints.FIRST_LINE_END;
 		imagePanel.add(hero2lbl, gbc_hero2lbl);
 		
-		attack = new JLabel("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+user.getAttack());
-		attack.setForeground(Color.ORANGE);
-		attack.setFont(new Font("Sylfaen", Font.BOLD, 20));
+		attacklbl = new JLabel("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+user.getAttack());
+		attacklbl.setForeground(Color.ORANGE);
+		attacklbl.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		GridBagConstraints gbc_attack = new GridBagConstraints();
 		gbc_attack.insets = new Insets(0, 0, 0, 5);
 		gbc_attack.gridx = 0;
 		gbc_attack.gridy = 1;
-		imagePanel.add(attack, gbc_attack);
+		imagePanel.add(attacklbl, gbc_attack);
 		
-		defence = new JLabel("\u0386\u03BC\u03C5\u03BD\u03B1: "+user.getDefence());
-		defence.setForeground(Color.ORANGE);
-		defence.setFont(new Font("Sylfaen", Font.BOLD, 20));
+		defencelbl = new JLabel("\u0386\u03BC\u03C5\u03BD\u03B1: "+user.getDefence());
+		defencelbl.setForeground(Color.ORANGE);
+		defencelbl.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		GridBagConstraints gbc_defence = new GridBagConstraints();
 		gbc_defence.insets = new Insets(0, 0, 0, 5);
 		gbc_defence.gridx = 0;
 		gbc_defence.gridy = 2;
-		imagePanel.add(defence, gbc_defence);
+		imagePanel.add(defencelbl, gbc_defence);
 		
 		life = new JLabel("\u0396\u03C9\u03AE: "+user.getHealth());
 		life.setForeground(Color.ORANGE);
@@ -172,6 +173,42 @@ public class Board extends JFrame{
 		gbc_life.gridx = 0;
 		gbc_life.gridy = 3;
 		imagePanel.add(life, gbc_life);
+		
+		plusLife=new JButton("+");
+		plusLife.setForeground(Color.ORANGE);
+		plusLife.setBackground(Color.BLACK);
+		plusLife.setFont(new Font("Sylfaen",Font.BOLD,30));
+		GridBagConstraints c=new GridBagConstraints();
+		c.gridx=1;
+		c.gridy=3;
+		imagePanel.add(plusLife,c);
+		plusDefence=new JButton("+");
+		plusDefence.setForeground(Color.ORANGE);
+		plusDefence.setBackground(Color.BLACK);
+		plusDefence.setFont(new Font("Sylfaen",Font.BOLD,30));
+		c.gridx=1;
+		c.gridy=2;
+		imagePanel.add(plusDefence,c);
+		plusAttack=new JButton("+");
+		plusAttack.setForeground(Color.ORANGE);
+		plusAttack.setBackground(Color.BLACK);
+		plusAttack.setFont(new Font("Sylfaen",Font.BOLD,30));
+		c.gridx=1;
+		c.gridy=1;
+		imagePanel.add(plusAttack,c);
+		
+		skillpointlbl=new JLabel("Skill Points \n"+user.getSkillpoints());
+		skillpointlbl.setFont(new Font("Sylfaen",Font.BOLD,20));
+		skillpointlbl.setForeground(Color.WHITE);
+		c.gridx=1;
+		c.gridy=4;
+		imagePanel.add(skillpointlbl, c);
+		
+		skillListener=new UpgradeSkillListener();
+		plusLife.addActionListener(skillListener);
+		plusDefence.addActionListener(skillListener);
+		plusAttack.addActionListener(skillListener);
+		
 		
 		r = new Random(System.currentTimeMillis());
 		
@@ -198,7 +235,8 @@ public class Board extends JFrame{
 		piso.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		quitPanel.add(piso, BorderLayout.WEST);
 		quitPanel.add(quit, BorderLayout.EAST);
-		quitPanel.setBounds((widthSize*18),(heightSize*9),(widthSize*2),(heightSize));
+		quitPanel.setBounds((widthSize*18),(heightSize*9),(widthSize*2),(heightSize/2));
+		back.add(quitPanel);
 		
 		back.setTransparentAdd(true);
 		this.setVisible(true);
@@ -338,6 +376,45 @@ class DiceListener implements MouseListener {
 	}
 	
 }
+
+public class UpgradeSkillListener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		double health=xristis.getHealth();
+		double attack=xristis.getAttack();
+		double defence=xristis.getDefence();
+		int skillpoints=xristis.getSkillpoints();
+		if(skillpoints>0){
+			if(e.getSource()==plusLife){
+				health++;
+				xristis.setHealth(health);
+				skillpoints--;
+				xristis.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
+				life.setText("\u0396\u03C9\u03AE: "+xristis.getHealth());
+			}
+			else if(e.getSource()==plusAttack){
+				attack++;
+				xristis.setAttack(attack);
+				skillpoints--;
+				xristis.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
+				attacklbl.setText("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+xristis.getAttack());
+			}
+			else if(e.getSource()==plusDefence){
+				defence++;
+				xristis.setDefence(defence);
+				skillpoints--;
+				xristis.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
+				defencelbl.setText("\u0386\u03BC\u03C5\u03BD\u03B1: "+xristis.getDefence());
+			}
+		}
+		else
+			JOptionPane.showMessageDialog(null,"You Don't Have Any Skill Points Available");
+	}
 	
+}
 
 }
