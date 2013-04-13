@@ -6,6 +6,7 @@ import javax.swing.*;
 public class Uicons extends ImageIcon {
 	
 	private ArrayList<ImageIcon> usedIcons;
+	private ArrayList<CardLabel> mmg_icons;//Memory Game
 	
 	public Uicons(){		
 		
@@ -77,6 +78,45 @@ public class Uicons extends ImageIcon {
 	
 	ImageIcon iconOlympus=new ImageIcon("olympus.jpg");
 	usedIcons.add(iconOlympus);
+	//Memory Game Stuff
+	mmg_icons=new ArrayList<CardLabel>();
+
+	ImageIcon dedault_back_mmg=new ImageIcon("pattern_mmg.jpg"); // 0
+	ImageIcon hermes_mmg=new ImageIcon("hermes_mmg.jpg");   //  1
+	ImageIcon pegasus_mmg=new ImageIcon("pegasus_mmg.jpg");  // 2
+	ImageIcon medusa_mmg=new ImageIcon("medusa_mmg.jpg");   //  3
+	ImageIcon hades_mmg=new ImageIcon("hades_mmg.jpg");   //    4
+	ImageIcon warrior_mmg=new ImageIcon("warrior_mmg.jpg");//   5
+	ImageIcon kouros_mmg=new ImageIcon("kouros_mmg.jpg");   //  6
+	ImageIcon yphestos_mmg=new ImageIcon("yphestos_mmg.jpg");// 7
+	ImageIcon minotaur_mmg=new ImageIcon("minotaur_mmg.jpg");// 7
+	
+	mmg_icons.add(new CardLabel(dedault_back_mmg,  "default") );
+	
+	mmg_icons.add(new CardLabel(hermes_mmg,         "hermes") );  //We need twice each icon
+	mmg_icons.add(new CardLabel(hermes_mmg,         "hermes") );
+	
+	mmg_icons.add(new CardLabel(pegasus_mmg,       "pegasus") );
+	mmg_icons.add(new CardLabel(pegasus_mmg,       "pegasus") );
+	
+	mmg_icons.add(new CardLabel(medusa_mmg,         "medusa") );	
+	mmg_icons.add(new CardLabel(medusa_mmg,         "medusa") );
+	
+	mmg_icons.add(new CardLabel(hades_mmg,           "hades") );
+	mmg_icons.add(new CardLabel(hades_mmg,           "hades") );
+	
+	mmg_icons.add(new CardLabel(warrior_mmg,       "warrior") );
+	mmg_icons.add(new CardLabel(warrior_mmg,       "warrior") );
+	
+	mmg_icons.add(new CardLabel(kouros_mmg,         "kouros") );
+	mmg_icons.add(new CardLabel(kouros_mmg,         "kouros") );
+	
+	mmg_icons.add(new CardLabel(yphestos_mmg,     "yphestos") );
+	mmg_icons.add(new CardLabel(yphestos_mmg,     "yphestos") );
+	
+	mmg_icons.add(new CardLabel(minotaur_mmg,     "minotaur") );
+	mmg_icons.add(new CardLabel(minotaur_mmg,     "minotaur") );
+
 	
 	}
 
@@ -86,6 +126,14 @@ public class Uicons extends ImageIcon {
 
 	public void setUsedIcons(ArrayList<ImageIcon> usedIcons) {
 		this.usedIcons = usedIcons;
+	}
+	//Memory Game
+	public ArrayList<CardLabel> getMMGIcons() {
+		return mmg_icons;
+	}
+
+	public void setMMGIcons(ArrayList<CardLabel> usedIcons) {
+		this.mmg_icons = usedIcons;
 	}
 	
 	
