@@ -3,10 +3,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -15,6 +18,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -23,18 +27,19 @@ public class Board extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JButton diceButton, coinButton, piso, quit;
-	private JLabel title, imageLabel, attack, defence,life;
+	private JLabel title, imageLabel, attack, defence, life, coinlbl, dicelbl, hero2lbl;
 	private Random r;
 	private JPanel buttonPanel, imagePanel, quitPanel;
 	private User xristis;
 	private MyGlassPane myGlassPane;
 	private int row, size, playerX, playerY, widthSize, heightSize;
 	private BackgroundPanel back;
-	private Image background, hero, resize;
+	private Image background, hero, resize ,hero2;
 	private Clip clip;
 	private AudioInputStream audio;
 	private Pick_A_Hero pick;
-	private ButtonListener listener;
+	//private ButtonListener listener;
+	private DiceListener dlistener;
 	private ImageIcon image;
 	
 	public Board(User user, ImageIcon heroimage){
@@ -52,9 +57,8 @@ public class Board extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setUndecorated(true);
 		back = new BackgroundPanel(background);
-		back.setTransparentAdd(true);
-		setContentPane(back);
-		back.setLayout(new BorderLayout(5, 5));
+		
+		back.setLayout(null);
 		
 		try{
 			audio = AudioSystem.getAudioInputStream(new File("battle_theme.wav").getAbsoluteFile());
@@ -66,68 +70,82 @@ public class Board extends JFrame{
 			e.printStackTrace();
 		}
 		
-		listener = new ButtonListener();
+		//listener = new ButtonListener();
+		dlistener=new DiceListener();
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double fwidth = screenSize.getWidth();
 		double fheight = screenSize.getHeight();
 		int iwidth = (int)fwidth;
 		int iheight = (int)fheight;
-		widthSize = iwidth / 7;
-		heightSize = iheight / 3;
+		widthSize = iwidth / 20;
+		heightSize = iheight / 10;
 		
 		//
 		title = new JLabel("\u03A4\u03B1\u03BC\u03C0\u03BB\u03CC");
 		title.setFont(new Font("Sylfaen", Font.PLAIN, 40));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		back.add(title, BorderLayout.NORTH);
+		title.setBounds((iwidth/2),5,(widthSize*2),(heightSize));
 		
 		myGlassPane = new MyGlassPane();
 		this.setGlassPane(myGlassPane);
 		myGlassPane.setVisible(true);
-		back.add(myGlassPane, BorderLayout.CENTER);
-		
+				
 		//
 		buttonPanel = new JPanel();
-		back.add(buttonPanel, BorderLayout.WEST);
-		GridBagLayout gbl_buttonPanel = new GridBagLayout();
-		gbl_buttonPanel.rowHeights = new int[] {10, 10};
-		gbl_buttonPanel.columnWidths = new int[] {10, 10};
+		GridLayout gbl_buttonPanel = new GridLayout(1,2);
 		buttonPanel.setLayout(gbl_buttonPanel);
 		
-		diceButton = new JButton("\u0396\u03AC\u03C1\u03B9");
-		diceButton.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		GridBagConstraints gbc_diceButton = new GridBagConstraints();
-		gbc_diceButton.fill = GridBagConstraints.BOTH;
-		gbc_diceButton.insets = new Insets(0, 0, 0, 5);
-		gbc_diceButton.gridx = 0;
-		gbc_diceButton.gridy = 0;
-		buttonPanel.add(diceButton, gbc_diceButton);
-		diceButton.addActionListener(listener);
+		buttonPanel.setBounds((widthSize*13),(heightSize*2),(widthSize*6),(heightSize*2));
+		back.add(buttonPanel);
 		
-		coinButton = new JButton("\u039A\u03AD\u03C1\u03BC\u03B1");
-		coinButton.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		GridBagConstraints gbc_coinButton = new GridBagConstraints();
-		gbc_coinButton.fill = GridBagConstraints.BOTH;
-		gbc_coinButton.gridx = 0;
-		gbc_coinButton.gridy = 3;
-		buttonPanel.add(coinButton, gbc_coinButton);
-		coinButton.addActionListener(listener);
+		ImageIcon  coin=new  ImageIcon("coin.gif");
+		Image coinImage=coin.getImage();
+		coinlbl=new JLabel();
+		Image coinResizedImage = coinImage.getScaledInstance((buttonPanel.getWidth()/2), buttonPanel.getHeight(), 0);
+		coinlbl.setIcon(new ImageIcon(coinResizedImage));
+		buttonPanel.add(coinlbl);
+		
+		
+		ImageIcon dice=new ImageIcon("dice.gif");
+		Image diceImage=dice.getImage();
+		dicelbl=new JLabel();
+		Image diceResizedImage= diceImage.getScaledInstance((buttonPanel.getWidth()/2),buttonPanel.getHeight(),0);
+		dicelbl.setIcon(new ImageIcon(diceResizedImage));
+		buttonPanel.add(dicelbl);
+		dicelbl.addMouseListener(dlistener);
 		
 		imagePanel = new JPanel();
-		back.add(imagePanel, BorderLayout.EAST);
+		imagePanel.setBounds((widthSize*13),(heightSize*4),(widthSize*6),(heightSize*5));
 		GridBagLayout gbl_imagePanel = new GridBagLayout();
 		imagePanel.setLayout(gbl_imagePanel);
+		back.add(imagePanel);
 		
-		imageLabel = new JLabel("");
+		imageLabel = new JLabel();
 		hero = image.getImage();
-		resize = hero.getScaledInstance(widthSize, heightSize, 0);
+		resize = hero.getScaledInstance((widthSize*3), (heightSize*3), 0);
 		imageLabel.setIcon(new ImageIcon(resize));
 		GridBagConstraints gbc_imageLabel = new GridBagConstraints();
+		gbc_imageLabel.fill=GridBagConstraints.HORIZONTAL;
 		gbc_imageLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_imageLabel.gridx = 0;
 		gbc_imageLabel.gridy = 0;
+		//gbc_imageLabel.anchor=GridBagConstraints.FIRST_LINE_START;
 		imagePanel.add(imageLabel, gbc_imageLabel);
+		
+		hero2lbl=new JLabel();
+		//tha emfanizetai efoson exoun epilegei 2 paixtes
+		ImageIcon hero2Icon=new ImageIcon("Zeus.jpg");
+		//tha pairnei timh analogh me to ti exei dialeksei o deyteros paixths
+		Image hero2Image=hero2Icon.getImage();
+		Image hero2ResizedImage= hero2Image.getScaledInstance((widthSize),(heightSize),0);
+		hero2lbl.setIcon(new ImageIcon(hero2ResizedImage));
+		GridBagConstraints gbc_hero2lbl=new GridBagConstraints();
+		gbc_hero2lbl.insets=new Insets(0,(2*widthSize),0,0);
+		gbc_hero2lbl.gridx=(widthSize*4);
+		gbc_hero2lbl.gridy=0;
+		gbc_hero2lbl.anchor=GridBagConstraints.FIRST_LINE_END;
+		imagePanel.add(hero2lbl, gbc_hero2lbl);
 		
 		attack = new JLabel("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+user.getAttack());
 		attack.setForeground(Color.ORANGE);
@@ -180,7 +198,11 @@ public class Board extends JFrame{
 		piso.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		quitPanel.add(piso, BorderLayout.WEST);
 		quitPanel.add(quit, BorderLayout.EAST);
-		back.add(quitPanel, BorderLayout.SOUTH);
+		quitPanel.setBounds((widthSize*18),(heightSize*9),(widthSize*2),(heightSize));
+		
+		back.setTransparentAdd(true);
+		this.setVisible(true);
+		this.setContentPane(back);
 	}
 	
 	@SuppressWarnings("serial")
@@ -215,17 +237,38 @@ public class Board extends JFrame{
 		}	
 	}
 	
-class ButtonListener implements ActionListener {
-		int diceButton;
-		
-		public void actionPerformed(ActionEvent e) {
+class DiceListener implements MouseListener {
+
+	int diceButton;
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
 			diceButton = r.nextInt(6) + 1;
 			System.out.println("zari "+diceButton);
 			moveChar(getDice());
 			myGlassPane.setXYCoordinates(playerX, playerY);
 			myGlassPane.repaint();
-		}
+			switchChars();
+			}
 		
+		public void switchChars(){
+			//tha kaleitai mono an paizoun 2 paixtes
+			ImageIcon tempIcon=new ImageIcon();
+			Icon i=imageLabel.getIcon();
+			tempIcon=(ImageIcon)i;
+			//apothikeyw to icon ths megalhs eikonas
+			Image tempImage=tempIcon.getImage();
+			Image tempResizedImage = tempImage.getScaledInstance(hero2lbl.getWidth(), hero2lbl.getHeight(), 0);
+			//thn metasxhmatizw stis diastaseis tou mikrou label
+			i=hero2lbl.getIcon();
+			tempIcon=(ImageIcon)i;
+			tempImage=tempIcon.getImage();
+			hero2lbl.setIcon(new ImageIcon(tempResizedImage));
+			tempResizedImage=tempImage.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),0);
+			imageLabel.setIcon(new ImageIcon(tempResizedImage));
+			
+			//allagh twn label me ta xarakthristika
+			
+		}
 		public int getDice(){
 			return diceButton;
 		}
@@ -265,5 +308,36 @@ class ButtonListener implements ActionListener {
 				}
 			}
 		}
-	}	
+	
+		// TODO Auto-generated method stub
+		
+
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+	
+
 }
