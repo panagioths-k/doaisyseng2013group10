@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -61,6 +63,12 @@ public class AncientArcadeFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public AncientArcadeFrame() {
+		//Getting Dimensions
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+		System.out.println("Width is: "+width +" and height is: "+height);
+		
 		Info = new ArrayList<String>();           //info about Zeus
 		Info.add("King of the gods, the ruler of Mount Olympus and the god of \n the sky" +
 				", weather, thunder, lightning, law, order, and fate.");
@@ -107,99 +115,95 @@ public class AncientArcadeFrame extends JFrame {
 		Info.add("In ancient Greece, the sea world was one \n of the most important things, as the fish was a basic part \n of Greek" +
 			          	" nutrition. \n They also used sea to trade with other civilizations");
 		
-		setBounds(100, 100, 450, 300);
+		//Adding the Labels
+		int z=10;   //ystera apo prakseis to z=10 synarthsei tou WIDTH!!!
+		int w=20 ;    // ystera apo prakseis to k=10 synartisei toy ÇEIGHT!!!
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Heroes_tip = new JLabel();
-		Heroes_tip.setBounds(116, 41, 69, 24);
-		contentPane.add(Heroes_tip);
-
-		Symbols_tip = new JLabel();
-		Symbols_tip.setBounds(359, 41, 81, 24);
-		contentPane.add(Symbols_tip);
 		// labels(images) about heroes
 		Hero_lbl_1 = new JLabel(new ImageIcon("zeus.jpg"));  //zeus   --> 1
-		Hero_lbl_1.setBounds(0, 67, 114, 64);
+		Hero_lbl_1.setBounds(20, 40, (int) (width-40)/4 -z, (int) (height-50)/7 - w );
 		Hero_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_1);
 
 		Hero_lbl_2 = new JLabel(new ImageIcon("poseidon.jpg"));   //poseidon --> 2
-		Hero_lbl_2.setBounds(0, 142, 114, 64);
+		Hero_lbl_2.setBounds(20, Hero_lbl_1.getY()+Hero_lbl_1.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_2);
 
 		Hero_lbl_3 = new JLabel(new ImageIcon("hercules.jpg"));   // hercules --> 3
-		Hero_lbl_3.setBounds(0, 222, 114, 64);
+		Hero_lbl_3.setBounds(20, Hero_lbl_2.getY()+Hero_lbl_2.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_3);
 
 		Hero_lbl_4 = new JLabel(new ImageIcon("theseus.jpg"));
-		Hero_lbl_4.setBounds(0, 294, 114, 64);
+		Hero_lbl_4.setBounds(20, Hero_lbl_3.getY()+Hero_lbl_3.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_4);
 
 		Hero_lbl_5 = new JLabel(new ImageIcon("odysseus.jpg"));
-		Hero_lbl_5.setBounds(0, 369, 114, 64);
+		Hero_lbl_5.setBounds(20, Hero_lbl_4.getY()+Hero_lbl_4.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_5);
 
 		Hero_lbl_6 = new JLabel(new ImageIcon("perseus.jpg"));
-		Hero_lbl_6.setBounds(0, 445, 114, 64);
+		Hero_lbl_6.setBounds(20, Hero_lbl_5.getY()+Hero_lbl_5.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Hero_lbl_6);
-
+		
+		Hero_lbl_gen = new JLabel();     //here are compared the connentions between Heroes-Symbols
+		Hero_lbl_gen.setBounds(20, Hero_lbl_6.getY()+Hero_lbl_6.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		contentPane.add(Hero_lbl_gen);
+		
 		//labels(images) about symbos
 		Symbol_lbl_1 = new JLabel(new ImageIcon("cerberus1.jpg"));
-		Symbol_lbl_1.setBounds(460, 67, 114, 64);
+		Symbol_lbl_1.setBounds( (int) (Hero_lbl_1.getX()+3*(width-40)/4) , 20, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_1);
 
 		Symbol_lbl_2 = new JLabel(new ImageIcon("minotaur.jpg"));
-		Symbol_lbl_2.setBounds(460, 142, 114, 64);
+		Symbol_lbl_2.setBounds((int) (Hero_lbl_2.getX()+3*(width-40)/4) , Symbol_lbl_1.getY()+Symbol_lbl_1.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_2);
 
 		Symbol_lbl_3 = new JLabel(new ImageIcon("olympus2.jpg"));
-		Symbol_lbl_3.setBounds(460, 222, 114, 64);
+		Symbol_lbl_3.setBounds((int) (Hero_lbl_3.getX()+3*(width-40)/4) , Symbol_lbl_2.getY()+Symbol_lbl_2.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_3);
 
 		Symbol_lbl_4 = new JLabel(new ImageIcon("medusa.jpg"));
-		Symbol_lbl_4.setBounds(460, 294, 114, 64);
+		Symbol_lbl_4.setBounds((int) (Hero_lbl_4.getX()+3*(width-40)/4) , Symbol_lbl_3.getY()+Symbol_lbl_3.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_4);
 
 		Symbol_lbl_5 = new JLabel(new ImageIcon("scylla.jpg"));
-		Symbol_lbl_5.setBounds(460, 369, 114, 64);
+		Symbol_lbl_5.setBounds((int) (Hero_lbl_5.getX()+3*(width-40)/4) , Symbol_lbl_4.getY()+Symbol_lbl_4.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_5);
 
 		Symbol_lbl_6 = new JLabel(new ImageIcon("sea.jpg"));
-		Symbol_lbl_6.setBounds(460, 445, 114, 64);
+		Symbol_lbl_6.setBounds((int) (Hero_lbl_6.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(Symbol_lbl_6);
 
-		Hero_lbl_gen = new JLabel();     //here are compared the connentions between Heroes-Symbols
-		Hero_lbl_gen.setBounds(0, 512, 114, 60);
-		contentPane.add(Hero_lbl_gen);
+		
 
 		Symbol_lbl_gen = new JLabel();
-		Symbol_lbl_gen.setBounds(460, 512, 114, 60);
+		Symbol_lbl_gen.setBounds((int) (Hero_lbl_gen.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		contentPane.add(Symbol_lbl_gen);
 
-		JButton btnVerify = new JButton("Verify");
-		btnVerify.setFont(new Font("MingLiU_HKSCS", Font.PLAIN, 17));
-		btnVerify.setBounds(241, 378, 89, 23);
-		btnVerify.addActionListener(new BListener());
-		contentPane.add(btnVerify);
+		
+		
 
 		ImageIcon  back_anime=new  ImageIcon("backround.gif");
-
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(116, 512, 344, 60);
+ 
+		scrollPane_1 = new JScrollPane();         //x                         //y                 //width                  //height
+		scrollPane_1.setBounds(Hero_lbl_gen.getX()+Hero_lbl_gen.getWidth()+z, Hero_lbl_gen.getY(),(int) (2*(width-40)/4 -z ) , Hero_lbl_gen.getHeight() );
 		contentPane.add(scrollPane_1);
 		
 		symbolArea=new JTextArea();
@@ -208,15 +212,29 @@ public class AncientArcadeFrame extends JFrame {
 		scrollPane_1.setViewportView(symbolArea);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(116, 435, 344, 60);
+		scrollPane.setBounds(Hero_lbl_6.getX()+Hero_lbl_gen.getWidth()+z, Hero_lbl_6.getY(),(int) (2*(width-40)/4 -z ) , Hero_lbl_gen.getHeight()-z );
 		contentPane.add(scrollPane);
 		
 		heroArea=new JTextArea();
 		hero_info = new JFormattedTextField();
 		scrollPane.setViewportView(heroArea);
+	
+		JButton btnVerify = new JButton("Verify");
+		btnVerify.setFont(new Font("MingLiU_HKSCS", Font.PLAIN, 17));
+		btnVerify.setBounds( (int) width/2-45 , Hero_lbl_5.getY(), 90, 23);
+		btnVerify.addActionListener(new BListener());
 		
+		Heroes_tip = new JLabel();
+		Heroes_tip.setBounds(scrollPane.getX(),10 ,81 ,84 );
+		contentPane.add(Heroes_tip);
+
+		Symbols_tip = new JLabel();
+		Symbols_tip.setBounds( (int)( Heroes_tip.getX()+2*(width-40)/4-81 ) ,10 ,81 ,84 );
+		contentPane.add(Symbols_tip);
+		
+		contentPane.add(btnVerify);
 		JLabel back_lbl = new JLabel(back_anime); //this label holds the backround image
-		back_lbl.setBounds(0, 0, 584, 572);
+		back_lbl.setBounds(0, 0,(int) width,(int) height);
 		
 				contentPane.add(back_lbl);
 
@@ -236,7 +254,10 @@ public class AncientArcadeFrame extends JFrame {
 		Symbol_lbl_6.addMouseListener(ML);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 610);
+//		this.setSize(600, 610);
+		this.setSize((int) width,(int) height);
+		this.setLocation(0, 0);
+		this.setUndecorated(true);
 		this.setVisible(true);
 
 	}
