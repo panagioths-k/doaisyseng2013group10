@@ -252,28 +252,38 @@ public class Pick_A_Hero extends JFrame {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(xristis1.getName());
-				System.out.println(xristis2.getName());
+				//System.out.println(xristis2.getName());
 				if(!checkIfDone()){
 					System.out.println("All players must choose a hero");
 					if(players.size()==1){
+						//single player
 						players.get(0).setCharImage(image);
+						
+						Pick_A_Hero.this.setVisible(false);
+						pista = new Board(players,image);
+						//metabolh kataskeyasth
+						pista.setVisible(true);
+						clip.stop();
 					}
 					else{
+						//multiplayer
 						if(players.get(0).getCharImage()==null){
 						players.get(0).setCharImage(image);
 						}
 						else{
 							players.get(1).setCharImage(image);
+							
+							Pick_A_Hero.this.setVisible(false);
+							pista = new Board(players,image);
+							//metabolh kataskeyasth
+							pista.setVisible(true);
+							clip.stop();
 						}
 						}
 				}
-				else{
-				Pick_A_Hero.this.setVisible(false);
-				pista = new Board(players,image);
-				//metabolh kataskeyasth
-				pista.setVisible(true);
-				clip.stop();
-				} 
+				
+				
+				 
 			}
 			public boolean checkIfDone(){
 				//an exoume teleiwsei me tis eikones
