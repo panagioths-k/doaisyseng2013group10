@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
@@ -34,7 +36,7 @@ public class Pick_A_Hero extends JFrame {
 	private JPanel helpPanel, quitPanel;
 	private Name_Frame name;
 	private Board pista;
-	private User xristis;
+	private User xristis1, xristis2;
 	private Image background, resize, help;
 	private ImageIcon hero, image;
 	private BackgroundPanel back;
@@ -45,9 +47,16 @@ public class Pick_A_Hero extends JFrame {
 	private Pick_A_Hero_Listener PHL;
 	private int helpWidth, helpHeight, widthSize, heightSize;
 	private double frameWidth, frameHeight;
+	private ArrayList<User> players;
 	
-	public Pick_A_Hero(User user) {
-		xristis = user;
+	public Pick_A_Hero(ArrayList<User> p) {
+		players=new ArrayList<User>();
+		players=p;
+		//metafora listas paixtwn
+		xristis1 = players.get(0);
+		if((players.size())>1){
+			xristis2=players.get(1);
+		}
 		PHL = new Pick_A_Hero_Listener();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frameWidth = screenSize.getWidth();
@@ -242,10 +251,37 @@ public class Pick_A_Hero extends JFrame {
 		play = new JButton("\u03A0\u03B1\u03AF\u03BE\u03B5");
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(xristis1.getName());
+				System.out.println(xristis2.getName());
+				if(!checkIfDone()){
+					System.out.println("All players must choose a hero");
+					if(players.size()==1){
+						players.get(0).setCharImage(image);
+					}
+					else{
+						if(players.get(0).getCharImage()==null){
+						players.get(0).setCharImage(image);
+						}
+						else{
+							players.get(1).setCharImage(image);
+						}
+						}
+				}
+				else{
 				Pick_A_Hero.this.setVisible(false);
-				pista = new Board(xristis, image);
+				pista = new Board(players,image);
+				//metabolh kataskeyasth
 				pista.setVisible(true);
 				clip.stop();
+				} 
+			}
+			public boolean checkIfDone(){
+				//an exoume teleiwsei me tis eikones
+				for(User u:players){
+					if(u.getCharImage()==null)
+						return false;
+				}
+				return true;
 			}
 		});
 		play.setFont(new Font("Sylfaen", Font.PLAIN, 20));
@@ -276,6 +312,8 @@ public class Pick_A_Hero extends JFrame {
 				name = new Name_Frame();
 				name.setVisible(true);
 			}
+			
+			
 		});
 		piso.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		quitPanel.add(piso, BorderLayout.WEST);
@@ -294,6 +332,7 @@ public class Pick_A_Hero extends JFrame {
 			pl4.setBorder(null);
 			pl5.setBorder(null);
 			pl6.setBorder(null);
+			
 			if(e.getSource() == pl1){
 				pl1.setBorder(new LineBorder(Color.RED, 5));
 				image = new ImageIcon("Ares.jpg");
@@ -319,6 +358,8 @@ public class Pick_A_Hero extends JFrame {
 				image = new ImageIcon("Zeus.jpg");
 			}
 		}
+		
+		
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {

@@ -44,6 +44,8 @@ public class Name_Frame extends JFrame {
 	private JComboBox comboBox;
 	private JTextField name1, name2;
 	
+	private ArrayList<User> players;
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Name_Frame() {
 		try {
@@ -157,12 +159,26 @@ public class Name_Frame extends JFrame {
 		name2.setColumns(10);
 		name2.setVisible(false);
 		
+		players=new ArrayList<User>();
+		//dhmiourgia listas gia paixtes
+		
 		play = new JButton("\u03A0\u03B1\u03AF\u03BE\u03B5");
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clip.stop();
-				user = new User(name1.getText());
-				hero = new Pick_A_Hero(user);
+				if ((comboBox.getSelectedItem()).equals("1")){
+					user = new User(name1.getText());
+					players.add(user);
+				
+					
+				}
+				else{
+					User user1=new User(name1.getText());
+					User user2=new User(name2.getText());
+					players.add(user1);
+					players.add(user2);
+				}
+				hero = new Pick_A_Hero(players);
 				hero.setVisible(true);
 				Name_Frame.this.setVisible(false);
 			}

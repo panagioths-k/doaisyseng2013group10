@@ -1,3 +1,7 @@
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 public class User {
 	private String name;
 	private double attack;
@@ -5,6 +9,7 @@ public class User {
 	private double health;
 	private int skillpoints;
 	//points to upgrade skills
+	private ImageIcon charImage;
 	
 	public User(String name) 
 	{
@@ -14,6 +19,15 @@ public class User {
 		this.defence = 20;
 		this.health = 100;
 		this.skillpoints=10;
+		this.charImage=null;
+	}
+
+	public ImageIcon getCharImage() {
+		return charImage;
+	}
+
+	public void setCharImage(ImageIcon charImage) {
+		this.charImage = charImage;
 	}
 
 	public String getName() {

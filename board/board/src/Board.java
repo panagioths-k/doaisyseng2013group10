@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -26,11 +27,11 @@ import java.awt.Insets;
 public class Board extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
-	private JButton diceButton, coinButton, piso, quit, plusLife, plusAttack, plusDefence;
+	private JButton piso, quit, plusLife, plusAttack, plusDefence;
 	private JLabel title, imageLabel, attacklbl, defencelbl, life, coinlbl, dicelbl, hero2lbl, skillpointlbl;
 	private Random r;
 	private JPanel buttonPanel, imagePanel, quitPanel;
-	private User xristis;
+	private User xristis1, xristis2;
 	private MyGlassPane myGlassPane;
 	private int row, size, playerX, playerY, widthSize, heightSize;
 	private BackgroundPanel back;
@@ -38,14 +39,22 @@ public class Board extends JFrame{
 	private Clip clip;
 	private AudioInputStream audio;
 	private Pick_A_Hero pick;
-	//private ButtonListener listener;
 	private DiceListener dlistener;
 	private ImageIcon image;
 	private UpgradeSkillListener skillListener;
 	
-	public Board(User user, ImageIcon heroimage){
-		xristis = user;
-		image = heroimage;
+	private ArrayList<User> players;
+	
+	public Board(ArrayList<User> p, ImageIcon heroimage){
+		players=new ArrayList<User>();
+		players=p;
+		xristis1 = players.get(0);
+		if ((players.size())>1){
+			xristis2=players.get(1);
+		}
+		
+		//ImageIcon heroimage
+		image =heroimage;
 		row = 1;
 		playerX = 0;
 		playerY = 0;
@@ -71,8 +80,8 @@ public class Board extends JFrame{
 			e.printStackTrace();
 		}
 		
-		//listener = new ButtonListener();
 		dlistener=new DiceListener();
+		
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double fwidth = screenSize.getWidth();
@@ -148,7 +157,7 @@ public class Board extends JFrame{
 		gbc_hero2lbl.anchor=GridBagConstraints.FIRST_LINE_END;
 		imagePanel.add(hero2lbl, gbc_hero2lbl);
 		
-		attacklbl = new JLabel("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+user.getAttack());
+		attacklbl = new JLabel("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+xristis1.getAttack());
 		attacklbl.setForeground(Color.ORANGE);
 		attacklbl.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		GridBagConstraints gbc_attack = new GridBagConstraints();
@@ -157,7 +166,7 @@ public class Board extends JFrame{
 		gbc_attack.gridy = 1;
 		imagePanel.add(attacklbl, gbc_attack);
 		
-		defencelbl = new JLabel("\u0386\u03BC\u03C5\u03BD\u03B1: "+user.getDefence());
+		defencelbl = new JLabel("\u0386\u03BC\u03C5\u03BD\u03B1: "+xristis1.getDefence());
 		defencelbl.setForeground(Color.ORANGE);
 		defencelbl.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		GridBagConstraints gbc_defence = new GridBagConstraints();
@@ -166,7 +175,7 @@ public class Board extends JFrame{
 		gbc_defence.gridy = 2;
 		imagePanel.add(defencelbl, gbc_defence);
 		
-		life = new JLabel("\u0396\u03C9\u03AE: "+user.getHealth());
+		life = new JLabel("\u0396\u03C9\u03AE: "+xristis1.getHealth());
 		life.setForeground(Color.ORANGE);
 		life.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		GridBagConstraints gbc_life = new GridBagConstraints();
@@ -197,7 +206,7 @@ public class Board extends JFrame{
 		c.gridy=1;
 		imagePanel.add(plusAttack,c);
 		
-		skillpointlbl=new JLabel("Skill Points \n"+user.getSkillpoints());
+		skillpointlbl=new JLabel("Skill Points \n"+xristis1.getSkillpoints());
 		skillpointlbl.setFont(new Font("Sylfaen",Font.BOLD,20));
 		skillpointlbl.setForeground(Color.WHITE);
 		c.gridx=1;
@@ -228,7 +237,7 @@ public class Board extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				clip.stop();
 				Board.this.setVisible(false);
-				pick = new Pick_A_Hero(xristis);
+				pick = new Pick_A_Hero(players);
 				pick.setVisible(true);
 			}
 		});
@@ -381,34 +390,34 @@ public class UpgradeSkillListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		double health=xristis.getHealth();
-		double attack=xristis.getAttack();
-		double defence=xristis.getDefence();
-		int skillpoints=xristis.getSkillpoints();
+		double health=xristis1.getHealth();
+		double attack=xristis1.getAttack();
+		double defence=xristis1.getDefence();
+		int skillpoints=xristis1.getSkillpoints();
 		if(skillpoints>0){
 			if(e.getSource()==plusLife){
 				health++;
-				xristis.setHealth(health);
+				xristis1.setHealth(health);
 				skillpoints--;
-				xristis.setSkillpoints(skillpoints);
-				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
-				life.setText("\u0396\u03C9\u03AE: "+xristis.getHealth());
+				xristis1.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis1.getSkillpoints());
+				life.setText("\u0396\u03C9\u03AE: "+xristis1.getHealth());
 			}
 			else if(e.getSource()==plusAttack){
 				attack++;
-				xristis.setAttack(attack);
+				xristis1.setAttack(attack);
 				skillpoints--;
-				xristis.setSkillpoints(skillpoints);
-				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
-				attacklbl.setText("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+xristis.getAttack());
+				xristis1.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis1.getSkillpoints());
+				attacklbl.setText("\u0388\u03C0\u03AF\u03B8\u03B5\u03C3\u03B7: "+xristis1.getAttack());
 			}
 			else if(e.getSource()==plusDefence){
 				defence++;
-				xristis.setDefence(defence);
+				xristis1.setDefence(defence);
 				skillpoints--;
-				xristis.setSkillpoints(skillpoints);
-				skillpointlbl.setText("Skill Points" +xristis.getSkillpoints());
-				defencelbl.setText("\u0386\u03BC\u03C5\u03BD\u03B1: "+xristis.getDefence());
+				xristis1.setSkillpoints(skillpoints);
+				skillpointlbl.setText("Skill Points" +xristis1.getSkillpoints());
+				defencelbl.setText("\u0386\u03BC\u03C5\u03BD\u03B1: "+xristis1.getDefence());
 			}
 		}
 		else
