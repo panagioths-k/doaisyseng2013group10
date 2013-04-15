@@ -31,6 +31,10 @@ public class AncientArcadeFrame extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<String> Info ; //info about images: hereos and symbols
+	
+	//Icons
+	private Uicons iconlist;
+	private ArrayList<ImageIcon> currlist;
 
 	private JLabel Heroes_tip;   //TIPS//
 	private	JLabel Symbols_tip;
@@ -54,11 +58,20 @@ public class AncientArcadeFrame extends JFrame {
 	private JFormattedTextField symbol_info;
 	private JScrollPane scrollPane_1;
 
-	private JTextPane test;
 	private JTextArea heroArea;
 	private JTextArea symbolArea;
 	private JFormattedTextField hero_info;
 	private JScrollPane scrollPane;
+	
+	private boolean pack_flag_1=true; //** if the user finished one match, the flag turns false
+	private boolean pack_flag_2=true;    //** if all 6 flags are false the game ends
+	private boolean pack_flag_3=true;
+	private boolean pack_flag_4=true;
+	private boolean pack_flag_5=true;
+	private boolean pack_flag_6=true;
+	private JPanel seperator_panel;
+	private JLabel title_label;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -68,6 +81,11 @@ public class AncientArcadeFrame extends JFrame {
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();
 		System.out.println("Width is: "+width +" and height is: "+height);
+		
+		//Icons
+		iconlist= new Uicons();
+		currlist=new ArrayList<ImageIcon>(iconlist.getArcadeIcons());
+		
 		
 		Info = new ArrayList<String>();           //info about Zeus
 		Info.add("King of the gods, the ruler of Mount Olympus and the god of \n the sky" +
@@ -266,44 +284,96 @@ public class AncientArcadeFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			if(Hero_lbl_gen.getIcon() !=null && Symbol_lbl_gen.getIcon()!=null){//*** Check if the connention labels have nothng yet***//
+
+				if(Hero_lbl_gen.getIcon().toString()=="zeus.jpg" && Symbol_lbl_gen.getIcon().toString()=="olympus.jpg"){//**connention ckeking//
+					if(pack_flag_1){                                      //ckeck if the connention is already done 
+						
+						Hero_lbl_1.setEnabled(false);
+						Symbol_lbl_3.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_1=false;
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+
+
+				}
+				else if(Hero_lbl_gen.getIcon().toString()=="poseidon.jpg" && Symbol_lbl_gen.getIcon().toString()=="sea.jpg"){
+					if(pack_flag_2){
+						Hero_lbl_2.setEnabled(false);
+						Symbol_lbl_6.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_2=false;
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+					
+
+				}
+				else if(Hero_lbl_gen.getIcon().toString()=="hercules.jpg" && Symbol_lbl_gen.getIcon().toString()=="cerberus.jpg"){
+					if(pack_flag_3){
+						Hero_lbl_3.setEnabled(false);
+						Symbol_lbl_1.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_3=false;
+					}
+					else	
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+					
+				
+				}
+				else if(Hero_lbl_gen.getIcon().toString()=="theseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="minotaur.jpg"){
+					if(pack_flag_4){
+						Hero_lbl_4.setEnabled(false);
+						Symbol_lbl_2.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_4=false;
+					}
+					else	
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+					
+					
+					
+				}
+				else if(Hero_lbl_gen.getIcon().toString()=="odysseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="scylla.jpg"){
+					if(pack_flag_5){
+						Hero_lbl_5.setEnabled(false);
+						Symbol_lbl_5.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_5=false;
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+					
+					
+
+
+				}
+				else if(Hero_lbl_gen.getIcon().toString()=="perseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="medusa.jpg"){
+					if(pack_flag_6){
+						Hero_lbl_6.setEnabled(false);
+						Symbol_lbl_4.setEnabled(false);
+						JOptionPane.showMessageDialog(null, "Correct !");
+						pack_flag_6=false;
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Already Completed!");
+
+					
+
+					
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Wrong Mismatch !");
+
+
+			}
+			else 
+				System.out.println("Nothing selected yet");
 			
-			
-			if(Hero_lbl_gen.getIcon().toString()=="zeus.jpg" && Symbol_lbl_gen.getIcon().toString()=="olympus.jpg"){
-
-				Hero_lbl_1.setEnabled(false);
-				Symbol_lbl_3.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			}
-			else if(Hero_lbl_gen.getIcon().toString()=="poseidon.jpg" && Symbol_lbl_gen.getIcon().toString()=="sea.jpg"){
-
-				Hero_lbl_2.setEnabled(false);
-				Symbol_lbl_6.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			}
-			else if(Hero_lbl_gen.getIcon().toString()=="hercules.jpg" && Symbol_lbl_gen.getIcon().toString()=="cerberus.jpg"){
-
-				Hero_lbl_3.setEnabled(false);
-				Symbol_lbl_1.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			}
-			else if(Hero_lbl_gen.getIcon().toString()=="theseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="minotaur.jpg"){
-
-				Hero_lbl_4.setEnabled(false);
-				Symbol_lbl_2.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			}
-			else if(Hero_lbl_gen.getIcon().toString()=="odysseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="scylla.jpg"){
-
-				Hero_lbl_5.setEnabled(false);
-				Symbol_lbl_5.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			}
-			else if(Hero_lbl_gen.getIcon().toString()=="perseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="medusa.jpg"){
-
-				Hero_lbl_6.setEnabled(false);
-				Symbol_lbl_4.setEnabled(false);
-			    JOptionPane.showMessageDialog(null, "Correct !");
-			
+			if(!pack_flag_1&&!pack_flag_2&&!pack_flag_3&&!pack_flag_4&&!pack_flag_5&&!pack_flag_6){  //6 flags are false ==completed
+				JOptionPane.showMessageDialog(null, "Congratulations, You have finished, here is a potato! ");
 			}
 		}
 		
@@ -317,70 +387,69 @@ public class AncientArcadeFrame extends JFrame {
 			if(e.getSource()==Hero_lbl_1){            //HEROES LISTENER
 				Hero_lbl_gen.setIcon(new ImageIcon("zeus.jpg"));
 				Heroes_tip.setText("ZEUS");
-				heroArea.setText(Info.get(0));
-			
+				hero_info.setText(Info.get(0));
 
 			} 
 			else if(e.getSource()==Hero_lbl_2){
 				Hero_lbl_gen.setIcon(new ImageIcon("poseidon.jpg"));
 				Heroes_tip.setText("POSEIDON");
-				heroArea.setText(Info.get(1));
+				hero_info.setText(Info.get(1));
 
 			}
 			else if(e.getSource()==Hero_lbl_3){
 				Hero_lbl_gen.setIcon(new ImageIcon("hercules.jpg"));
 				Heroes_tip.setText("HERCULES");
-				heroArea.setText(Info.get(2));
+				hero_info.setText(Info.get(2));
 
 			}
 			else if(e.getSource()==Hero_lbl_4){
 				Hero_lbl_gen.setIcon(new ImageIcon("theseus.jpg"));
 				Heroes_tip.setText("THESEUS");
-				heroArea.setText(Info.get(3));
+				hero_info.setText(Info.get(3));
 
 			}
 			else if(e.getSource()==Hero_lbl_5){
 				Hero_lbl_gen.setIcon(new ImageIcon("odysseus.jpg"));
 				Heroes_tip.setText("ODYSSEUS");
-				heroArea.setText(Info.get(4));
+				hero_info.setText(Info.get(4));
 
 			}
 			else if(e.getSource()==Hero_lbl_6){
 				Hero_lbl_gen.setIcon(new ImageIcon("perseus.jpg"));
 				Heroes_tip.setText("PERSEUS");
-				heroArea.setText(Info.get(5));
+				hero_info.setText(Info.get(5));
 
 			}
 			else if(e.getSource()== Symbol_lbl_1){      //SYMBOLS LISTENER
 				Symbol_lbl_gen.setIcon(new ImageIcon("cerberus.jpg"));
 				Symbols_tip.setText("CERBERUS");
-				symbolArea.setText(Info.get(6));
+				symbol_info.setText(Info.get(6));
 
 			}
 			else if(e.getSource()== Symbol_lbl_2){
 				Symbol_lbl_gen.setIcon(new ImageIcon("minotaur.jpg"));
 				Symbols_tip.setText("MINOTAUR");
-				symbolArea.setText(Info.get(7));
+				symbol_info.setText(Info.get(7));
 			}
 			else if(e.getSource()== Symbol_lbl_3){
-				Symbol_lbl_gen.setIcon(new ImageIcon("olympus2.jpg"));
+				Symbol_lbl_gen.setIcon(new ImageIcon("olympus.jpg"));
 				Symbols_tip.setText("OLYMPUS");
-				symbolArea.setText(Info.get(8));
+				symbol_info.setText(Info.get(8));
 			}
 			else if(e.getSource()== Symbol_lbl_4){
 				Symbol_lbl_gen.setIcon(new ImageIcon("medusa.jpg"));
 				Symbols_tip.setText("MEDUSA");
-				symbolArea.setText(Info.get(9));
+				symbol_info.setText(Info.get(9));
 			}
 			else if(e.getSource()== Symbol_lbl_5){
 				Symbol_lbl_gen.setIcon(new ImageIcon("scylla.jpg"));
 				Symbols_tip.setText("SCYLLA");
-				symbolArea.setText(Info.get(10));
+				symbol_info.setText(Info.get(10));
 			}
 			else if(e.getSource()== Symbol_lbl_6){
 				Symbol_lbl_gen.setIcon(new ImageIcon("sea.jpg"));
 				Symbols_tip.setText("SEA WORLD");
-				symbolArea.setText(Info.get(11));
+				symbol_info.setText(Info.get(11));
 			}
 
 		}

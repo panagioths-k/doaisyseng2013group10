@@ -7,6 +7,7 @@ public class Uicons extends ImageIcon {
 	
 	private ArrayList<ImageIcon> usedIcons;
 	private ArrayList<CardLabel> mmg_icons;//Memory Game
+	private ArrayList<ImageIcon> ArcadeIcons;
 	
 	public Uicons(){		
 		
@@ -118,6 +119,53 @@ public class Uicons extends ImageIcon {
 	mmg_icons.add(new CardLabel(minotaur_mmg,     "minotaur") );
 
 	
+	
+	//Ancient Arcade Stuff
+		ArcadeIcons=new ArrayList<ImageIcon>();
+		
+		ImageIcon  back_anime=new  ImageIcon("arcade_backround.gif");
+		
+		ImageIcon  arcade_hero_1=new  ImageIcon("arcade_zeus.jpg");
+		ImageIcon  arcade_hero_2=new  ImageIcon("arcade_poseidon.gif");
+		ImageIcon  arcade_hero_3=new  ImageIcon("arcade_hercules.jpg");
+		ImageIcon  arcade_hero_4=new  ImageIcon("arcade_theseus.jpg");
+		ImageIcon  arcade_hero_5=new  ImageIcon("arcade_oddyseus.gif");
+		ImageIcon  arcade_hero_6=new  ImageIcon("arcade_perseus.gif");
+
+		ImageIcon  arcade_symbol_1=new  ImageIcon("arcade_cerberus.jpg");
+		ImageIcon  arcade_symbol_2=new  ImageIcon("arcade_minotaur.jpg");
+		ImageIcon  arcade_symbol_3=new  ImageIcon("arcade_olympus.jpg");
+		ImageIcon  arcade_symbol_4=new  ImageIcon("arcade_medusa.jpg");
+		ImageIcon  arcade_symbol_5=new  ImageIcon("arcade_scylla.jpg");
+		ImageIcon  arcade_symbol_6=new  ImageIcon("arcade_sea.jpg");
+	
+		
+		//adding the ImageIcons
+		ArcadeIcons.add(back_anime);
+		
+		ArcadeIcons.add(arcade_hero_1);
+		ArcadeIcons.add(arcade_hero_2);
+		ArcadeIcons.add(arcade_hero_3);
+		ArcadeIcons.add(arcade_hero_4);
+		ArcadeIcons.add(arcade_hero_5);
+		ArcadeIcons.add(arcade_hero_6);
+		
+		ArcadeIcons.add(arcade_symbol_1);
+		ArcadeIcons.add(arcade_symbol_2);
+		ArcadeIcons.add(arcade_symbol_3);
+		ArcadeIcons.add(arcade_symbol_4);
+		ArcadeIcons.add(arcade_symbol_5);
+		ArcadeIcons.add(arcade_symbol_6);
+		
+	
+	}
+
+	public ArrayList<ImageIcon> getArcadeIcons() {
+		return ArcadeIcons;
+	}
+
+	public void setArcadeIcons(ArrayList<ImageIcon> aArcadeIcons) {
+		ArcadeIcons = aArcadeIcons;
 	}
 
 	public ArrayList<ImageIcon> getUsedIcons() {
