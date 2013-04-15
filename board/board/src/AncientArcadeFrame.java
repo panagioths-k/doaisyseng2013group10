@@ -147,31 +147,37 @@ public class AncientArcadeFrame extends JFrame {
 		Hero_lbl_1 = new JLabel(new ImageIcon("zeus.jpg"));  //zeus   --> 1
 		Hero_lbl_1.setBounds(20, 40, (int) (width-40)/4 -z, (int) (height-50)/7 - w );
 		Hero_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_1.setIcon(new ImageIcon(currlist.get(1).getImage().getScaledInstance(Hero_lbl_1.getWidth(), Hero_lbl_1.getHeight(), 0)));
 		contentPane.add(Hero_lbl_1);
 
 		Hero_lbl_2 = new JLabel(new ImageIcon("poseidon.jpg"));   //poseidon --> 2
 		Hero_lbl_2.setBounds(20, Hero_lbl_1.getY()+Hero_lbl_1.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_2.setIcon(new ImageIcon(currlist.get(2).getImage().getScaledInstance(Hero_lbl_2.getWidth(), Hero_lbl_2.getHeight(), 0)));
 		contentPane.add(Hero_lbl_2);
 
 		Hero_lbl_3 = new JLabel(new ImageIcon("hercules.jpg"));   // hercules --> 3
 		Hero_lbl_3.setBounds(20, Hero_lbl_2.getY()+Hero_lbl_2.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_3.setIcon(new ImageIcon(currlist.get(3).getImage().getScaledInstance(Hero_lbl_3.getWidth(), Hero_lbl_3.getHeight(), 0)));
 		contentPane.add(Hero_lbl_3);
 
 		Hero_lbl_4 = new JLabel(new ImageIcon("theseus.jpg"));
 		Hero_lbl_4.setBounds(20, Hero_lbl_3.getY()+Hero_lbl_3.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_4.setIcon(new ImageIcon(currlist.get(4).getImage().getScaledInstance(Hero_lbl_4.getWidth(), Hero_lbl_4.getHeight(), 0)));
 		contentPane.add(Hero_lbl_4);
 
 		Hero_lbl_5 = new JLabel(new ImageIcon("odysseus.jpg"));
 		Hero_lbl_5.setBounds(20, Hero_lbl_4.getY()+Hero_lbl_4.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_5.setIcon(new ImageIcon(currlist.get(5).getImage().getScaledInstance(Hero_lbl_5.getWidth(), Hero_lbl_5.getHeight(), 0)));
 		contentPane.add(Hero_lbl_5);
 
 		Hero_lbl_6 = new JLabel(new ImageIcon("perseus.jpg"));
 		Hero_lbl_6.setBounds(20, Hero_lbl_5.getY()+Hero_lbl_5.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Hero_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Hero_lbl_6.setIcon(new ImageIcon(currlist.get(6).getImage().getScaledInstance(Hero_lbl_6.getWidth(), Hero_lbl_6.getHeight(), 0)));
 		contentPane.add(Hero_lbl_6);
 		
 		Hero_lbl_gen = new JLabel();     //here are compared the connentions between Heroes-Symbols
@@ -182,31 +188,37 @@ public class AncientArcadeFrame extends JFrame {
 		Symbol_lbl_1 = new JLabel(new ImageIcon("cerberus1.jpg"));
 		Symbol_lbl_1.setBounds( (int) (Hero_lbl_1.getX()+3*(width-40)/4) , 20, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_1.setIcon(new ImageIcon(currlist.get(7).getImage().getScaledInstance(Symbol_lbl_1.getWidth(), Symbol_lbl_1.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_1);
 
 		Symbol_lbl_2 = new JLabel(new ImageIcon("minotaur.jpg"));
 		Symbol_lbl_2.setBounds((int) (Hero_lbl_2.getX()+3*(width-40)/4) , Symbol_lbl_1.getY()+Symbol_lbl_1.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_2.setIcon(new ImageIcon(currlist.get(8).getImage().getScaledInstance(Symbol_lbl_2.getWidth(), Symbol_lbl_2.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_2);
 
 		Symbol_lbl_3 = new JLabel(new ImageIcon("olympus2.jpg"));
 		Symbol_lbl_3.setBounds((int) (Hero_lbl_3.getX()+3*(width-40)/4) , Symbol_lbl_2.getY()+Symbol_lbl_2.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_3.setIcon(new ImageIcon(currlist.get(9).getImage().getScaledInstance(Symbol_lbl_3.getWidth(), Symbol_lbl_3.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_3);
 
 		Symbol_lbl_4 = new JLabel(new ImageIcon("medusa.jpg"));
 		Symbol_lbl_4.setBounds((int) (Hero_lbl_4.getX()+3*(width-40)/4) , Symbol_lbl_3.getY()+Symbol_lbl_3.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_4.setIcon(new ImageIcon(currlist.get(10).getImage().getScaledInstance(Symbol_lbl_4.getWidth(), Symbol_lbl_4.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_4);
 
 		Symbol_lbl_5 = new JLabel(new ImageIcon("scylla.jpg"));
 		Symbol_lbl_5.setBounds((int) (Hero_lbl_5.getX()+3*(width-40)/4) , Symbol_lbl_4.getY()+Symbol_lbl_4.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_5.setIcon(new ImageIcon(currlist.get(11).getImage().getScaledInstance(Symbol_lbl_5.getWidth(), Symbol_lbl_5.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_5);
 
 		Symbol_lbl_6 = new JLabel(new ImageIcon("sea.jpg"));
 		Symbol_lbl_6.setBounds((int) (Hero_lbl_6.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		Symbol_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		Symbol_lbl_6.setIcon(new ImageIcon(currlist.get(12).getImage().getScaledInstance(Symbol_lbl_6.getWidth(), Symbol_lbl_6.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_6);
 
 		
@@ -251,8 +263,9 @@ public class AncientArcadeFrame extends JFrame {
 		contentPane.add(Symbols_tip);
 		
 		contentPane.add(btnVerify);
-		JLabel back_lbl = new JLabel(back_anime); //this label holds the backround image
+		JLabel back_lbl = new JLabel(); //this label holds the backround image
 		back_lbl.setBounds(0, 0,(int) width,(int) height);
+		back_lbl.setIcon(new ImageIcon(currlist.get(0).getImage().getScaledInstance(back_lbl.getWidth(), back_lbl.getHeight(), 0)));
 		
 				contentPane.add(back_lbl);
 
