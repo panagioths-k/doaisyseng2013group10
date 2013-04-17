@@ -53,14 +53,12 @@ public class AncientArcadeFrame extends JFrame {
 	private JLabel Symbol_lbl_5;
 	private JLabel Symbol_lbl_6;
 
-	private JLabel Hero_lbl_gen ;
-	private JLabel Symbol_lbl_gen ;
-	private JFormattedTextField symbol_info;
+	private CardLabel Hero_lbl_gen ;
+	private CardLabel Symbol_lbl_gen ;
 	private JScrollPane scrollPane_1;
 
 	private JTextArea heroArea;
 	private JTextArea symbolArea;
-	private JFormattedTextField hero_info;
 	private JScrollPane scrollPane;
 	
 	private boolean pack_flag_1=true; //** if the user finished one match, the flag turns false
@@ -135,7 +133,7 @@ public class AncientArcadeFrame extends JFrame {
 		
 		//Adding the Labels
 		int z=10;   //ystera apo prakseis to z=10 synarthsei tou WIDTH!!!
-		int w=20 ;    // ystera apo prakseis to k=10 synartisei toy ÇEIGHT!!!
+		int w=10 ;    // ystera apo prakseis to k=10 synartisei toy ÇEIGHT!!!
 		
 		
 		contentPane = new JPanel();
@@ -144,100 +142,96 @@ public class AncientArcadeFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		// labels(images) about heroes
-		Hero_lbl_1 = new JLabel(new ImageIcon("zeus.jpg"));  //zeus   --> 1
-		Hero_lbl_1.setBounds(20, 40, (int) (width-40)/4 -z, (int) (height-50)/7 - w );
+		Hero_lbl_1 = new JLabel();  //zeus   --> 1
+		Hero_lbl_1.setBounds(20, 20, (int)( ((width-40)/4)*0.8 -z ), (int) (height-50)/7 - w );
 		Hero_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_1.setIcon(new ImageIcon(currlist.get(1).getImage().getScaledInstance(Hero_lbl_1.getWidth(), Hero_lbl_1.getHeight(), 0)));
 		contentPane.add(Hero_lbl_1);
 
-		Hero_lbl_2 = new JLabel(new ImageIcon("poseidon.jpg"));   //poseidon --> 2
-		Hero_lbl_2.setBounds(20, Hero_lbl_1.getY()+Hero_lbl_1.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_2 = new JLabel();   //poseidon --> 2
+		Hero_lbl_2.setBounds(20, Hero_lbl_1.getY()+Hero_lbl_1.getHeight()+w, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Hero_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_2.setIcon(new ImageIcon(currlist.get(2).getImage().getScaledInstance(Hero_lbl_2.getWidth(), Hero_lbl_2.getHeight(), 0)));
 		contentPane.add(Hero_lbl_2);
 
-		Hero_lbl_3 = new JLabel(new ImageIcon("hercules.jpg"));   // hercules --> 3
-		Hero_lbl_3.setBounds(20, Hero_lbl_2.getY()+Hero_lbl_2.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_3 = new JLabel();   // hercules --> 3
+		Hero_lbl_3.setBounds(20, Hero_lbl_2.getY()+Hero_lbl_2.getHeight()+w, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Hero_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_3.setIcon(new ImageIcon(currlist.get(3).getImage().getScaledInstance(Hero_lbl_3.getWidth(), Hero_lbl_3.getHeight(), 0)));
 		contentPane.add(Hero_lbl_3);
 
-		Hero_lbl_4 = new JLabel(new ImageIcon("theseus.jpg"));
-		Hero_lbl_4.setBounds(20, Hero_lbl_3.getY()+Hero_lbl_3.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_4 = new JLabel();
+		Hero_lbl_4.setBounds(20, Hero_lbl_3.getY()+Hero_lbl_3.getHeight() +w, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Hero_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_4.setIcon(new ImageIcon(currlist.get(4).getImage().getScaledInstance(Hero_lbl_4.getWidth(), Hero_lbl_4.getHeight(), 0)));
 		contentPane.add(Hero_lbl_4);
 
-		Hero_lbl_5 = new JLabel(new ImageIcon("odysseus.jpg"));
-		Hero_lbl_5.setBounds(20, Hero_lbl_4.getY()+Hero_lbl_4.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_5 = new JLabel();
+		Hero_lbl_5.setBounds(20, Hero_lbl_4.getY()+Hero_lbl_4.getHeight()+w, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Hero_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_5.setIcon(new ImageIcon(currlist.get(5).getImage().getScaledInstance(Hero_lbl_5.getWidth(), Hero_lbl_5.getHeight(), 0)));
 		contentPane.add(Hero_lbl_5);
 
-		Hero_lbl_6 = new JLabel(new ImageIcon("perseus.jpg"));
-		Hero_lbl_6.setBounds(20, Hero_lbl_5.getY()+Hero_lbl_5.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_6 = new JLabel();
+		Hero_lbl_6.setBounds(20, Hero_lbl_5.getY()+Hero_lbl_5.getHeight()+w, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Hero_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Hero_lbl_6.setIcon(new ImageIcon(currlist.get(6).getImage().getScaledInstance(Hero_lbl_6.getWidth(), Hero_lbl_6.getHeight(), 0)));
 		contentPane.add(Hero_lbl_6);
 		
-		Hero_lbl_gen = new JLabel();     //here are compared the connentions between Heroes-Symbols
-		Hero_lbl_gen.setBounds(20, Hero_lbl_6.getY()+Hero_lbl_6.getHeight(), (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Hero_lbl_gen = new CardLabel();     //here are compared the connentions between Heroes-Symbols
+		Hero_lbl_gen.setBounds(20, Hero_lbl_6.getY()+Hero_lbl_6.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
 		contentPane.add(Hero_lbl_gen);
 		
 		//labels(images) about symbos
-		Symbol_lbl_1 = new JLabel(new ImageIcon("cerberus1.jpg"));
-		Symbol_lbl_1.setBounds( (int) (Hero_lbl_1.getX()+3*(width-40)/4) , 20, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_1 = new JLabel();
+		Symbol_lbl_1.setBounds( (int) (Hero_lbl_1.getX()+3*(width-40)/4) , 20, Hero_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_1.setIcon(new ImageIcon(currlist.get(7).getImage().getScaledInstance(Symbol_lbl_1.getWidth(), Symbol_lbl_1.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_1);
 
-		Symbol_lbl_2 = new JLabel(new ImageIcon("minotaur.jpg"));
-		Symbol_lbl_2.setBounds((int) (Hero_lbl_2.getX()+3*(width-40)/4) , Symbol_lbl_1.getY()+Symbol_lbl_1.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_2 = new JLabel();
+		Symbol_lbl_2.setBounds((int) (Hero_lbl_2.getX()+3*(width-40)/4) , Symbol_lbl_1.getY()+Symbol_lbl_1.getHeight()+w, Symbol_lbl_1.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_2.setIcon(new ImageIcon(currlist.get(8).getImage().getScaledInstance(Symbol_lbl_2.getWidth(), Symbol_lbl_2.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_2);
 
-		Symbol_lbl_3 = new JLabel(new ImageIcon("olympus2.jpg"));
-		Symbol_lbl_3.setBounds((int) (Hero_lbl_3.getX()+3*(width-40)/4) , Symbol_lbl_2.getY()+Symbol_lbl_2.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_3 = new JLabel();
+		Symbol_lbl_3.setBounds((int) (Hero_lbl_3.getX()+3*(width-40)/4) , Symbol_lbl_2.getY()+Symbol_lbl_2.getHeight()+w, Symbol_lbl_2.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_3.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_3.setIcon(new ImageIcon(currlist.get(9).getImage().getScaledInstance(Symbol_lbl_3.getWidth(), Symbol_lbl_3.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_3);
 
-		Symbol_lbl_4 = new JLabel(new ImageIcon("medusa.jpg"));
-		Symbol_lbl_4.setBounds((int) (Hero_lbl_4.getX()+3*(width-40)/4) , Symbol_lbl_3.getY()+Symbol_lbl_3.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_4 = new JLabel();
+		Symbol_lbl_4.setBounds((int) (Hero_lbl_4.getX()+3*(width-40)/4) , Symbol_lbl_3.getY()+Symbol_lbl_3.getHeight()+w, Symbol_lbl_3.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_4.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_4.setIcon(new ImageIcon(currlist.get(10).getImage().getScaledInstance(Symbol_lbl_4.getWidth(), Symbol_lbl_4.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_4);
 
-		Symbol_lbl_5 = new JLabel(new ImageIcon("scylla.jpg"));
-		Symbol_lbl_5.setBounds((int) (Hero_lbl_5.getX()+3*(width-40)/4) , Symbol_lbl_4.getY()+Symbol_lbl_4.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_5 = new JLabel();
+		Symbol_lbl_5.setBounds((int) (Hero_lbl_5.getX()+3*(width-40)/4) , Symbol_lbl_4.getY()+Symbol_lbl_4.getHeight()+w, Symbol_lbl_4.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_5.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_5.setIcon(new ImageIcon(currlist.get(11).getImage().getScaledInstance(Symbol_lbl_5.getWidth(), Symbol_lbl_5.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_5);
 
-		Symbol_lbl_6 = new JLabel(new ImageIcon("sea.jpg"));
-		Symbol_lbl_6.setBounds((int) (Hero_lbl_6.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_6 = new JLabel();
+		Symbol_lbl_6.setBounds((int) (Hero_lbl_6.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, Symbol_lbl_5.getWidth(), (int) (height-50)/7 - w);
 		Symbol_lbl_6.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		Symbol_lbl_6.setIcon(new ImageIcon(currlist.get(12).getImage().getScaledInstance(Symbol_lbl_6.getWidth(), Symbol_lbl_6.getHeight(), 0)));
 		contentPane.add(Symbol_lbl_6);
 
 		
 
-		Symbol_lbl_gen = new JLabel();
-		Symbol_lbl_gen.setBounds((int) (Hero_lbl_gen.getX()+3*(width-40)/4) , Symbol_lbl_5.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w);
+		Symbol_lbl_gen = new CardLabel();
+		Symbol_lbl_gen.setBounds (Symbol_lbl_6.getX() , Symbol_lbl_6.getY()+Symbol_lbl_5.getHeight()+w, (int) (width-40)/4 -z, (int) (height-50)/7 - w ) ;
 		contentPane.add(Symbol_lbl_gen);
 
 		
 		
-
-		ImageIcon  back_anime=new  ImageIcon("backround.gif");
- 
 		scrollPane_1 = new JScrollPane();         //x                         //y                 //width                  //height
 		scrollPane_1.setBounds(Hero_lbl_gen.getX()+Hero_lbl_gen.getWidth()+z, Hero_lbl_gen.getY(),(int) (2*(width-40)/4 -z ) , Hero_lbl_gen.getHeight() );
 		contentPane.add(scrollPane_1);
 		
 		symbolArea=new JTextArea();
-		symbol_info = new JFormattedTextField();
 		symbolArea.setDropMode(DropMode.INSERT);
 		scrollPane_1.setViewportView(symbolArea);
 
@@ -246,7 +240,6 @@ public class AncientArcadeFrame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		heroArea=new JTextArea();
-		hero_info = new JFormattedTextField();
 		scrollPane.setViewportView(heroArea);
 	
 		JButton btnVerify = new JButton("Verify");
@@ -298,10 +291,11 @@ public class AncientArcadeFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			if(Hero_lbl_gen.getIcon() !=null && Symbol_lbl_gen.getIcon()!=null){//*** Check if the connention labels have nothng yet***//
-
-				if(Hero_lbl_gen.getIcon().toString()=="zeus.jpg" && Symbol_lbl_gen.getIcon().toString()=="olympus.jpg"){//**connention ckeking//
-					if(pack_flag_1){                                      //ckeck if the connention is already done 
 						
+				
+				if(Hero_lbl_gen.getCode().equals("arcade_zeus" ) && Symbol_lbl_gen.getCode().equals("arcade_olympus") ){//**connention ckeking//
+					if(pack_flag_1){                                      //ckeck if the connention is already done 
+
 						Hero_lbl_1.setEnabled(false);
 						Symbol_lbl_3.setEnabled(false);
 						JOptionPane.showMessageDialog(null, "Correct !");
@@ -312,7 +306,7 @@ public class AncientArcadeFrame extends JFrame {
 
 
 				}
-				else if(Hero_lbl_gen.getIcon().toString()=="poseidon.jpg" && Symbol_lbl_gen.getIcon().toString()=="sea.jpg"){
+				else if(Hero_lbl_gen.getCode().equals("arcade_poseidon" ) && Symbol_lbl_gen.getCode().equals("arcade_sea") ){//**connention ckeking//
 					if(pack_flag_2){
 						Hero_lbl_2.setEnabled(false);
 						Symbol_lbl_6.setEnabled(false);
@@ -321,10 +315,10 @@ public class AncientArcadeFrame extends JFrame {
 					}
 					else
 						JOptionPane.showMessageDialog(null, "Already Completed!");
-					
+
 
 				}
-				else if(Hero_lbl_gen.getIcon().toString()=="hercules.jpg" && Symbol_lbl_gen.getIcon().toString()=="cerberus.jpg"){
+				else if(Hero_lbl_gen.getCode().equals("arcade_hercules" ) && Symbol_lbl_gen.getCode().equals("arcade_cerberus") ){//**connention ckeking//
 					if(pack_flag_3){
 						Hero_lbl_3.setEnabled(false);
 						Symbol_lbl_1.setEnabled(false);
@@ -333,10 +327,10 @@ public class AncientArcadeFrame extends JFrame {
 					}
 					else	
 						JOptionPane.showMessageDialog(null, "Already Completed!");
-					
-				
+
+
 				}
-				else if(Hero_lbl_gen.getIcon().toString()=="theseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="minotaur.jpg"){
+				else if(Hero_lbl_gen.getCode().equals("arcade_theseus" ) && Symbol_lbl_gen.getCode().equals("arcade_minotaur") ){//**connention ckeking//
 					if(pack_flag_4){
 						Hero_lbl_4.setEnabled(false);
 						Symbol_lbl_2.setEnabled(false);
@@ -345,11 +339,11 @@ public class AncientArcadeFrame extends JFrame {
 					}
 					else	
 						JOptionPane.showMessageDialog(null, "Already Completed!");
-					
-					
-					
+
+
+
 				}
-				else if(Hero_lbl_gen.getIcon().toString()=="odysseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="scylla.jpg"){
+				else if(Hero_lbl_gen.getCode().equals("arcade_odysseus" ) && Symbol_lbl_gen.getCode().equals("arcade_scylla") ){//**connention ckeking//
 					if(pack_flag_5){
 						Hero_lbl_5.setEnabled(false);
 						Symbol_lbl_5.setEnabled(false);
@@ -358,12 +352,12 @@ public class AncientArcadeFrame extends JFrame {
 					}
 					else
 						JOptionPane.showMessageDialog(null, "Already Completed!");
-					
-					
+
+
 
 
 				}
-				else if(Hero_lbl_gen.getIcon().toString()=="perseus.jpg" && Symbol_lbl_gen.getIcon().toString()=="medusa.jpg"){
+				else if(Hero_lbl_gen.getCode().equals("arcade_perseus" ) && Symbol_lbl_gen.getCode().equals("arcade_medusa") ){//**connention ckeking//
 					if(pack_flag_6){
 						Hero_lbl_6.setEnabled(false);
 						Symbol_lbl_4.setEnabled(false);
@@ -373,9 +367,9 @@ public class AncientArcadeFrame extends JFrame {
 					else
 						JOptionPane.showMessageDialog(null, "Already Completed!");
 
-					
 
-					
+
+
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Wrong Mismatch !");
@@ -384,85 +378,103 @@ public class AncientArcadeFrame extends JFrame {
 			}
 			else 
 				System.out.println("Nothing selected yet");
-			
+
 			if(!pack_flag_1&&!pack_flag_2&&!pack_flag_3&&!pack_flag_4&&!pack_flag_5&&!pack_flag_6){  //6 flags are false ==completed
-				JOptionPane.showMessageDialog(null, "Congratulations, You have finished, here is a potato! ");
+				JOptionPane.showMessageDialog(null, "Congratulations, You have finished");
+				
+				System.exit(EXIT_ON_CLOSE);    //***** FINISHED ----> EXIT  ***** 
 			}
 		}
-		
+
 	}
 
 	class MListener implements java.awt.event.MouseListener{
 
-
+         //Set the proper CODE in Hero_lbl_gen
+		// Set the proper ICON in Hero_lbl_gen
+	   //  Set the proper TEXT in Heroes_tip
+	  //   Set the proper TEXT in hero_area
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource()==Hero_lbl_1){            //HEROES LISTENER
-				Hero_lbl_gen.setIcon(new ImageIcon("zeus.jpg"));
+				Hero_lbl_gen.setCode("arcade_zeus");  //when a Hero label  is clicked Hero_lbl_gen gets the RIGHT CODE 
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(1).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
 				Heroes_tip.setText("ZEUS");
-				hero_info.setText(Info.get(0));
+				heroArea.setText(Info.get(0));
 
 			} 
 			else if(e.getSource()==Hero_lbl_2){
-				Hero_lbl_gen.setIcon(new ImageIcon("poseidon.jpg"));
+				Hero_lbl_gen.setCode("arcade_poseidon");
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(2).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
+				
 				Heroes_tip.setText("POSEIDON");
-				hero_info.setText(Info.get(1));
+				heroArea.setText(Info.get(1));
 
 			}
 			else if(e.getSource()==Hero_lbl_3){
-				Hero_lbl_gen.setIcon(new ImageIcon("hercules.jpg"));
+				Hero_lbl_gen.setCode("arcade_hercules");
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(3).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
 				Heroes_tip.setText("HERCULES");
-				hero_info.setText(Info.get(2));
+				heroArea.setText(Info.get(2));
 
 			}
 			else if(e.getSource()==Hero_lbl_4){
-				Hero_lbl_gen.setIcon(new ImageIcon("theseus.jpg"));
+				Hero_lbl_gen.setCode("arcade_theseus");
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(4).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
 				Heroes_tip.setText("THESEUS");
-				hero_info.setText(Info.get(3));
+				heroArea.setText(Info.get(3));
 
 			}
 			else if(e.getSource()==Hero_lbl_5){
-				Hero_lbl_gen.setIcon(new ImageIcon("odysseus.jpg"));
+				Hero_lbl_gen.setCode("arcade_odysseus");
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(5).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
 				Heroes_tip.setText("ODYSSEUS");
-				hero_info.setText(Info.get(4));
+				heroArea.setText(Info.get(4));
 
 			}
 			else if(e.getSource()==Hero_lbl_6){
-				Hero_lbl_gen.setIcon(new ImageIcon("perseus.jpg"));
+				Hero_lbl_gen.setCode("arcade_perseus");
+				Hero_lbl_gen.setIcon(new ImageIcon(currlist.get(6).getImage().getScaledInstance(Hero_lbl_gen.getWidth(), Hero_lbl_gen.getHeight(), 0)));
 				Heroes_tip.setText("PERSEUS");
-				hero_info.setText(Info.get(5));
+				heroArea.setText(Info.get(5));
 
 			}
 			else if(e.getSource()== Symbol_lbl_1){      //SYMBOLS LISTENER
-				Symbol_lbl_gen.setIcon(new ImageIcon("cerberus.jpg"));
+				Symbol_lbl_gen.setCode("arcade_cerberus");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(7).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("CERBERUS");
-				symbol_info.setText(Info.get(6));
+				symbolArea.setText(Info.get(6));
 
 			}
 			else if(e.getSource()== Symbol_lbl_2){
-				Symbol_lbl_gen.setIcon(new ImageIcon("minotaur.jpg"));
+				Symbol_lbl_gen.setCode("arcade_minotaur");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(8).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("MINOTAUR");
-				symbol_info.setText(Info.get(7));
+				symbolArea.setText(Info.get(7));
 			}
 			else if(e.getSource()== Symbol_lbl_3){
-				Symbol_lbl_gen.setIcon(new ImageIcon("olympus.jpg"));
+				Symbol_lbl_gen.setCode("arcade_olympus");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(9).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("OLYMPUS");
-				symbol_info.setText(Info.get(8));
+				symbolArea.setText(Info.get(8));
 			}
 			else if(e.getSource()== Symbol_lbl_4){
-				Symbol_lbl_gen.setIcon(new ImageIcon("medusa.jpg"));
+				Symbol_lbl_gen.setCode("arcade_medusa");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(10).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("MEDUSA");
-				symbol_info.setText(Info.get(9));
+				symbolArea.setText(Info.get(9));
 			}
 			else if(e.getSource()== Symbol_lbl_5){
-				Symbol_lbl_gen.setIcon(new ImageIcon("scylla.jpg"));
+				Symbol_lbl_gen.setCode("arcade_scylla");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(11).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("SCYLLA");
-				symbol_info.setText(Info.get(10));
+				symbolArea.setText(Info.get(10));
 			}
 			else if(e.getSource()== Symbol_lbl_6){
-				Symbol_lbl_gen.setIcon(new ImageIcon("sea.jpg"));
+				Symbol_lbl_gen.setCode("arcade_sea");
+				Symbol_lbl_gen.setIcon(new ImageIcon(currlist.get(12).getImage().getScaledInstance(Symbol_lbl_gen.getWidth(), Symbol_lbl_gen.getHeight(), 0)));
 				Symbols_tip.setText("SEA WORLD");
-				symbol_info.setText(Info.get(11));
+				symbolArea.setText(Info.get(11));
 			}
 
 		}

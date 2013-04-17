@@ -126,11 +126,11 @@ public class Uicons extends ImageIcon {
 		ImageIcon  back_anime=new  ImageIcon("arcade_backround.gif");
 		
 		ImageIcon  arcade_hero_1=new  ImageIcon("arcade_zeus.jpg");
-		ImageIcon  arcade_hero_2=new  ImageIcon("arcade_poseidon.gif");
+		ImageIcon  arcade_hero_2=new  ImageIcon("arcade_poseidon.jpg");
 		ImageIcon  arcade_hero_3=new  ImageIcon("arcade_hercules.jpg");
 		ImageIcon  arcade_hero_4=new  ImageIcon("arcade_theseus.jpg");
-		ImageIcon  arcade_hero_5=new  ImageIcon("arcade_oddyseus.gif");
-		ImageIcon  arcade_hero_6=new  ImageIcon("arcade_perseus.gif");
+		ImageIcon  arcade_hero_5=new  ImageIcon("arcade_odysseus.jpg");
+		ImageIcon  arcade_hero_6=new  ImageIcon("arcade_perseus.jpg");
 
 		ImageIcon  arcade_symbol_1=new  ImageIcon("arcade_cerberus.jpg");
 		ImageIcon  arcade_symbol_2=new  ImageIcon("arcade_minotaur.jpg");
