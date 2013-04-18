@@ -10,6 +10,7 @@ public class PuzzleList {
 		puzzles.add(new AncientArcade());
 		puzzles.add(new TeleCube());
 		puzzles.add(new PicsHeros());
+		puzzles.add(new MemoryGame());
 			
 	}
 

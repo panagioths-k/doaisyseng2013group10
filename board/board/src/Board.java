@@ -40,12 +40,16 @@ public class Board extends JFrame{
 	private AudioInputStream audio;
 	private Pick_A_Hero pick;
 	private DiceListener dlistener;
+	private CoinListener clistener;
 	private ImageIcon image;
 	private UpgradeSkillListener skillListener;
+	
+	
 	
 	private ArrayList<User> players;
 	
 	public Board(ArrayList<User> p, ImageIcon heroimage){
+		
 		players=new ArrayList<User>();
 		players=p;
 		xristis1 = players.get(0);
@@ -81,6 +85,7 @@ public class Board extends JFrame{
 		}
 		
 		dlistener=new DiceListener();
+		clistener=new CoinListener();
 		
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -115,7 +120,7 @@ public class Board extends JFrame{
 		Image coinResizedImage = coinImage.getScaledInstance((buttonPanel.getWidth()/2), buttonPanel.getHeight(), 0);
 		coinlbl.setIcon(new ImageIcon(coinResizedImage));
 		buttonPanel.add(coinlbl);
-		
+		coinlbl.addMouseListener(clistener);
 		
 		ImageIcon dice=new ImageIcon("dice.gif");
 		Image diceImage=dice.getImage();
@@ -359,6 +364,43 @@ class DiceListener implements MouseListener {
 		// TODO Auto-generated method stub
 		
 
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+class CoinListener implements MouseListener{
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		new DummyFrame();
+		new PuzzleList();
+		//na mpei ekei pou ftiaxnetai o paixths sthn pic a hero
+		
+		
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {

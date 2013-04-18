@@ -16,16 +16,16 @@ public class PicsHerosHeroManager {
 		
 		heroNames=new ArrayList<String>();
 		addNames();
-		//prosthiki onomatwn hrwwn		
+		//add the names of heroes		
 		iconList=new Uicons();
-		//gia na trabiskoume olh thn lista twn eikonidiwn
-		currList=new ArrayList<ImageIcon>(iconList.getUsedIcons());
+		//na ginetai mia fora genika oxi edw sto fortwma tou paixnidiou
+		currList=new ArrayList<ImageIcon>(iconList.getPicsHerosIcons());
 		heroes=new ArrayList<PicsHerosHero>();
 	}
 	
 	public void addNames(){
-		//methodos prosthikhs onomatwn
-		//h prosthiki prepei na ginetai me thn idia seira pou mpainei kai h triada twn eikonwn
+		//adding names of heroes
+		//the order must be according to the order the pics were imported
 		heroNames.add("DEDALUS");
 		heroNames.add("DIONYSUS");
 		heroNames.add("HERCULES");
@@ -44,27 +44,28 @@ public class PicsHerosHeroManager {
 		int k;
 		String currName="";
 		for(i=0;i<((currList.size()-1)/3);i++){
-			
-		//perasma ths listas ana 3ada (afaireitai 1 apo to size giati mesa sthn lista yparxei kai to background
-			
+		//the icon list has 3 pics related to each hero (minus 1 because of the background)
+				
 			ImageIcon[] currIcons=new ImageIcon[3];
 			k=0;
-			//deikths gia ton pinaka twn icons tou hero prepei na ftanei mexri to 3 kai na ksanamhdenizei
-			//gia ton epomeno hrwa
+			//k if for the icon array, it goes up to 3 (3 pics for each hero) and back to zero for the next hero
+			
 			for(j=(i*3);j<((i*3)+3);j++){
-			//perasma ths triadas pou briskomaste ana 1
-			//edw to i pollaplasiazetai epi 3 giati sto panw loop auksanei mono kata ena (alliws kollaei)
+			//read the icon array step by step
+			//(i*3) because in the first loop it increases only by 1 each time
+				
 				currName=heroNames.get(i);
 				currIcons[k]=currList.get(j);
 				k++;
 			}
 			heroes.add(new PicsHerosHero(currName,currIcons));
-			//dhmiourgia telikou hrwa
+			//creating the final hero to display
 		}	
 		System.out.println(heroes.size());
 	}
 	
 	public PicsHerosHero getHero(){
+		//gettin a random hero
 		 Random r = new Random();
 		  return heroes.get(r.nextInt(heroes.size()));
 	}

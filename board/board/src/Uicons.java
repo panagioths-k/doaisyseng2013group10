@@ -5,92 +5,94 @@ import javax.swing.*;
 
 public class Uicons extends ImageIcon {
 	
-	private ArrayList<ImageIcon> usedIcons;
+	private ArrayList<ImageIcon> picsHerosIcons;
 	private ArrayList<CardLabel> mmg_icons;//Memory Game
 	private ArrayList<ImageIcon> ArcadeIcons;
 	
 	public Uicons(){		
+	
+	//3pics1hero icons
+	picsHerosIcons=new ArrayList<ImageIcon>();
 		
-	usedIcons=new ArrayList<ImageIcon>();
-		
-	ImageIcon iconDedalus1=new ImageIcon("dedalos_labyrinth.jpg");
-	ImageIcon iconDedalus2=new ImageIcon("dedalos_talos.jpg");
-	ImageIcon iconDedalus3=new ImageIcon("dedalos.gif");
+	ImageIcon iconDedalus1=new ImageIcon("picshero_dedalos_labyrinth.jpg");
+	ImageIcon iconDedalus2=new ImageIcon("picshero_dedalos_talos.jpg");
+	ImageIcon iconDedalus3=new ImageIcon("picshero_dedalos.gif");
 	
-	usedIcons.add(iconDedalus1);
-	usedIcons.add(iconDedalus2);
-	usedIcons.add(iconDedalus3);
+	picsHerosIcons.add(iconDedalus1); //0
+	picsHerosIcons.add(iconDedalus2); //1
+	picsHerosIcons.add(iconDedalus3); //2 
 	
-	ImageIcon iconDionysus1=new ImageIcon("dioniysus_Pan.jpg");
-	ImageIcon iconDionysus2=new ImageIcon("dionysus_wine.jpg");
-	ImageIcon iconDionysus3=new ImageIcon("dionysus.jpg");
+	ImageIcon iconDionysus1=new ImageIcon("picshero_dioniysus_Pan.jpg");
+	ImageIcon iconDionysus2=new ImageIcon("picshero_dionysus_wine.jpg");
+	ImageIcon iconDionysus3=new ImageIcon("picshero_dionysus.jpg");
 	
-	usedIcons.add(iconDionysus1);
-	usedIcons.add(iconDionysus2);
-	usedIcons.add(iconDionysus3);
+	picsHerosIcons.add(iconDionysus1); //3
+	picsHerosIcons.add(iconDionysus2); //4
+	picsHerosIcons.add(iconDionysus3); //5
 	
-	ImageIcon iconHercules1=new ImageIcon("Hercules_hydra.png");
-	ImageIcon iconHercules2=new ImageIcon("Hercules_nemealion.jpg");
-	ImageIcon iconHercules3=new ImageIcon("Hercules_snake.jpg");
+	ImageIcon iconHercules1=new ImageIcon("picshero_Hercules_hydra.png");
+	ImageIcon iconHercules2=new ImageIcon("picshero_Hercules_nemealion.jpg");
+	ImageIcon iconHercules3=new ImageIcon("picshero_Hercules_snake.jpg");
 	
-	usedIcons.add(iconHercules1);
-	usedIcons.add(iconHercules2);
-	usedIcons.add(iconHercules3);
+	picsHerosIcons.add(iconHercules1); //6
+	picsHerosIcons.add(iconHercules2); //7
+	picsHerosIcons.add(iconHercules3); //8
 	
-	ImageIcon iconIaswnas1=new ImageIcon("iaswnas_argw.jpg");
-	ImageIcon iconIaswnas2=new ImageIcon("iaswnas_sympligades.jpg");
-	ImageIcon iconIaswnas3=new ImageIcon("iaswnas_xderas.jpg");
+	ImageIcon iconIaswnas1=new ImageIcon("picshero_iaswnas_argw.jpg");
+	ImageIcon iconIaswnas2=new ImageIcon("picshero_iaswnas_sympligades.jpg");
+	ImageIcon iconIaswnas3=new ImageIcon("picshero_iaswnas_xderas.jpg");
 	
-	usedIcons.add(iconIaswnas1);
-	usedIcons.add(iconIaswnas2);
-	usedIcons.add(iconIaswnas3);
+	picsHerosIcons.add(iconIaswnas1); //9
+	picsHerosIcons.add(iconIaswnas2); //10
+	picsHerosIcons.add(iconIaswnas3); //11
 	
-	ImageIcon iconOdysseas1=new ImageIcon("odysseas_doureios.jpg");
-	ImageIcon iconOdysseas2=new ImageIcon("odysseas_kirki.jpg");
-	ImageIcon iconOdysseas3=new ImageIcon("odysseas_polyfimos.jpg");
+	ImageIcon iconOdysseas1=new ImageIcon("picshero_odysseas_doureios.jpg");
+	ImageIcon iconOdysseas2=new ImageIcon("picshero_odysseas_kirki.jpg");
+	ImageIcon iconOdysseas3=new ImageIcon("picshero_odysseas_polyfimos.jpg");
 	
-	usedIcons.add(iconOdysseas1);
-	usedIcons.add(iconOdysseas2);
-	usedIcons.add(iconOdysseas3);
+	picsHerosIcons.add(iconOdysseas1); //12
+	picsHerosIcons.add(iconOdysseas2); //13
+	picsHerosIcons.add(iconOdysseas3); //14
 	
-	ImageIcon iconPerseas1=new ImageIcon("perseus_argos.jpg");
-	ImageIcon iconPerseas2=new ImageIcon("perseus_medusa.jpg");
-	ImageIcon iconPerseas3=new ImageIcon("perseus_zeus.jpg");
+	ImageIcon iconPerseas1=new ImageIcon("picshero_perseus_argos.jpg");
+	ImageIcon iconPerseas2=new ImageIcon("picshero_perseus_medusa.jpg");
+	ImageIcon iconPerseas3=new ImageIcon("picshero_perseus_zeus.jpg");
 	
-	usedIcons.add(iconPerseas1);
-	usedIcons.add(iconPerseas2);
-	usedIcons.add(iconPerseas3);
+	picsHerosIcons.add(iconPerseas1); //15
+	picsHerosIcons.add(iconPerseas2); //16
+	picsHerosIcons.add(iconPerseas3); //17
 	
-	ImageIcon iconPromitheas1=new ImageIcon("promitheas_caucasus.gif");
-	ImageIcon iconPromitheas2=new ImageIcon("promitheas_fwtia.png");
-	ImageIcon iconPromitheas3=new ImageIcon("promitheas.jpg");
+	ImageIcon iconPromitheas1=new ImageIcon("picshero_promitheas_caucasus.gif");
+	ImageIcon iconPromitheas2=new ImageIcon("picshero_promitheas_fwtia.png");
+	ImageIcon iconPromitheas3=new ImageIcon("picshero_promitheas.jpg");
 	
-	usedIcons.add(iconPromitheas1);
-	usedIcons.add(iconPromitheas2);
-	usedIcons.add(iconPromitheas3);	
+	picsHerosIcons.add(iconPromitheas1); //18
+	picsHerosIcons.add(iconPromitheas2); //19
+	picsHerosIcons.add(iconPromitheas3); //20
 	
-	ImageIcon iconThiseas1=new ImageIcon("thiseas_gyrismos.jpg");
-	ImageIcon iconThiseas2=new ImageIcon("thiseas_minotauros.png");
-	ImageIcon iconThiseas3=new ImageIcon("thiseas_taurosmarathona.jpg");
+	ImageIcon iconThiseas1=new ImageIcon("picshero_thiseas_gyrismos.jpg");
+	ImageIcon iconThiseas2=new ImageIcon("picshero_thiseas_minotauros.png");
+	ImageIcon iconThiseas3=new ImageIcon("picshero_thiseas_taurosmarathona.jpg");
 	
-	usedIcons.add(iconThiseas1);
-	usedIcons.add(iconThiseas2);
-	usedIcons.add(iconThiseas3);
+	picsHerosIcons.add(iconThiseas1); //21
+	picsHerosIcons.add(iconThiseas2); //22
+	picsHerosIcons.add(iconThiseas3); //23
 	
 	ImageIcon iconOlympus=new ImageIcon("olympus.jpg");
-	usedIcons.add(iconOlympus);
+	picsHerosIcons.add(iconOlympus); //24 background
+	
 	//Memory Game Stuff
 	mmg_icons=new ArrayList<CardLabel>();
 
-	ImageIcon dedault_back_mmg=new ImageIcon("pattern_mmg.jpg"); // 0
-	ImageIcon hermes_mmg=new ImageIcon("hermes_mmg.jpg");   //  1
-	ImageIcon pegasus_mmg=new ImageIcon("pegasus_mmg.jpg");  // 2
-	ImageIcon medusa_mmg=new ImageIcon("medusa_mmg.jpg");   //  3
-	ImageIcon hades_mmg=new ImageIcon("hades_mmg.jpg");   //    4
-	ImageIcon warrior_mmg=new ImageIcon("warrior_mmg.jpg");//   5
-	ImageIcon kouros_mmg=new ImageIcon("kouros_mmg.jpg");   //  6
-	ImageIcon yphestos_mmg=new ImageIcon("yphestos_mmg.jpg");// 7
-	ImageIcon minotaur_mmg=new ImageIcon("minotaur_mmg.jpg");// 7
+	ImageIcon dedault_back_mmg=new ImageIcon("mmg_pattern.jpg"); // 0 closed cards
+	ImageIcon hermes_mmg=new ImageIcon("mmg_hermes.jpg");   //  1
+	ImageIcon pegasus_mmg=new ImageIcon("mmg_pegasus.jpg");  // 2
+	ImageIcon medusa_mmg=new ImageIcon("mmg_medusa.jpg");   //  3
+	ImageIcon hades_mmg=new ImageIcon("mmg_hades.jpg");   //    4
+	ImageIcon warrior_mmg=new ImageIcon("mmg_warrior.jpg");//   5
+	ImageIcon kouros_mmg=new ImageIcon("mmg_kouros.jpg");   //  6
+	ImageIcon yphestos_mmg=new ImageIcon("mmg_yphestos.jpg");// 7
+	ImageIcon minotaur_mmg=new ImageIcon("mmg_minotaur.jpg");// 7
 	
 	mmg_icons.add(new CardLabel(dedault_back_mmg,  "default") );
 	
@@ -123,21 +125,21 @@ public class Uicons extends ImageIcon {
 	//Ancient Arcade Stuff
 		ArcadeIcons=new ArrayList<ImageIcon>();
 		
-		ImageIcon  back_anime=new  ImageIcon("arcade_backround.gif");
+		ImageIcon  back_anime=new  ImageIcon("arcade_backround.gif"); //0 background image
 		
-		ImageIcon  arcade_hero_1=new  ImageIcon("arcade_zeus.jpg");
-		ImageIcon  arcade_hero_2=new  ImageIcon("arcade_poseidon.jpg");
-		ImageIcon  arcade_hero_3=new  ImageIcon("arcade_hercules.jpg");
-		ImageIcon  arcade_hero_4=new  ImageIcon("arcade_theseus.jpg");
-		ImageIcon  arcade_hero_5=new  ImageIcon("arcade_odysseus.jpg");
-		ImageIcon  arcade_hero_6=new  ImageIcon("arcade_perseus.jpg");
+		ImageIcon  arcade_hero_1=new  ImageIcon("arcade_zeus.jpg"); //1
+		ImageIcon  arcade_hero_2=new  ImageIcon("arcade_poseidon.jpg"); //2 
+		ImageIcon  arcade_hero_3=new  ImageIcon("arcade_hercules.jpg"); //3
+		ImageIcon  arcade_hero_4=new  ImageIcon("arcade_theseus.jpg"); //4
+		ImageIcon  arcade_hero_5=new  ImageIcon("arcade_odysseus.jpg"); //5
+		ImageIcon  arcade_hero_6=new  ImageIcon("arcade_perseus.jpg"); //6
 
-		ImageIcon  arcade_symbol_1=new  ImageIcon("arcade_cerberus.jpg");
-		ImageIcon  arcade_symbol_2=new  ImageIcon("arcade_minotaur.jpg");
-		ImageIcon  arcade_symbol_3=new  ImageIcon("arcade_olympus.jpg");
-		ImageIcon  arcade_symbol_4=new  ImageIcon("arcade_medusa.jpg");
-		ImageIcon  arcade_symbol_5=new  ImageIcon("arcade_scylla.jpg");
-		ImageIcon  arcade_symbol_6=new  ImageIcon("arcade_sea.jpg");
+		ImageIcon  arcade_symbol_1=new  ImageIcon("arcade_cerberus.jpg"); //7
+		ImageIcon  arcade_symbol_2=new  ImageIcon("arcade_minotaur.jpg"); //8
+		ImageIcon  arcade_symbol_3=new  ImageIcon("arcade_olympus.jpg"); //9
+		ImageIcon  arcade_symbol_4=new  ImageIcon("arcade_medusa.jpg"); //10
+		ImageIcon  arcade_symbol_5=new  ImageIcon("arcade_scylla.jpg"); //11
+		ImageIcon  arcade_symbol_6=new  ImageIcon("arcade_sea.jpg"); //12
 	
 		
 		//adding the ImageIcons
@@ -168,12 +170,12 @@ public class Uicons extends ImageIcon {
 		ArcadeIcons = aArcadeIcons;
 	}
 
-	public ArrayList<ImageIcon> getUsedIcons() {
-		return usedIcons;
+	public ArrayList<ImageIcon> getPicsHerosIcons() {
+		return picsHerosIcons;
 	}
 
-	public void setUsedIcons(ArrayList<ImageIcon> usedIcons) {
-		this.usedIcons = usedIcons;
+	public void setPicsHerosIcons(ArrayList<ImageIcon> usedIcons) {
+		this.picsHerosIcons = usedIcons;
 	}
 	//Memory Game
 	public ArrayList<CardLabel> getMMGIcons() {

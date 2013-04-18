@@ -83,6 +83,7 @@ public class AncientArcadeFrame extends JFrame {
 		//Icons
 		iconlist= new Uicons();
 		currlist=new ArrayList<ImageIcon>(iconlist.getArcadeIcons());
+		System.out.println(currlist.size());
 		
 		
 		Info = new ArrayList<String>();           //info about Zeus

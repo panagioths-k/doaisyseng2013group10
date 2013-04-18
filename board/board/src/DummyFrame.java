@@ -37,7 +37,8 @@ public class DummyFrame extends JFrame{
 	public void getPuzzle(){
 		//methodos gia na pairnoume tyxaia ton epomeno grifo
 		
-		int currCode=r.nextInt(4);
+		int currCode=r.nextInt(5);
+		System.out.println(currCode);
 		//na allaksei analoga me to plhthos twn grifwn pou tha baloume
 		System.out.println(currCode);
 		for(Puzzle p:(puzzles.getPuzzles())){
